@@ -93,7 +93,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               <Button
                 onClick={() => setAdditionalOpen(!additionalOpen)}
                 variant="ghost"
-                className="w-40 h-9 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 bg-transparent hover:bg-transparent border border-gray-200 dark:border-gray-700 rounded-xl flex items-center justify-center gap-1 text-xs font-medium"
+                className="w-40 h-9 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 bg-transparent hover:bg-transparent border border-gray-200 dark:border-gray-700 rounded-3xl flex items-center justify-center gap-1 text-xs font-medium"
               >
                 Additional Options {additionalOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               </Button>
@@ -172,7 +172,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
           <p className="text-sm text-slate-400">Free. No credit card. No personal data shared.</p>
           <div>
             <Link href="/signin">
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 px-7 rounded-xl flex items-center gap-2">
+              <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 px-7 rounded-3xl flex items-center gap-2">
                 Get Started <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
