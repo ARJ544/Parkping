@@ -80,7 +80,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
           {/* BUTTON */}
           <div className="md:col-span-2 flex justify-start">
             <Link href="/qr">
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 px-7 rounded-xl flex items-center gap-2">
+              <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 px-7 rounded-3xl flex items-center gap-2">
                 Generate your QR Code
                 <ArrowRight className="h-4 w-4" />
               </Button>
