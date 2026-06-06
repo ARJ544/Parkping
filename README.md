@@ -1,4 +1,4 @@
-# Pingivo
+# Pingivo (New Features Only)
 **Multipurpose QR Codes · Privacy First**
 
 Pingivo lets you generate a secure QR code for anything you own — your car, bike, bag, laptop, or anything else. Stick it on, and anyone who finds or needs to reach you can send a message or make a call to you instantly, without ever seeing your phone number.
