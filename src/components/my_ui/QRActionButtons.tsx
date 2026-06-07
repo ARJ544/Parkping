@@ -21,7 +21,7 @@ export default function QRActionButtons({
       <Button
         onClick={onDownload}
         disabled={downloading}
-        className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 rounded-xl flex items-center justify-center gap-2"
+        className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 rounded-3xl flex items-center justify-center gap-2"
       >
         <Download className="w-4 h-4" />
         {downloading ? "Generating..." : "Download Sticker"}
@@ -31,7 +31,7 @@ export default function QRActionButtons({
         onClick={onShare}
         disabled={sharing}
         variant="outline"
-        className="h-11 px-5 rounded-xl flex items-center gap-2 font-bold border-slate-200 dark:border-slate-700"
+        className="h-11 px-5 rounded-3xl flex items-center gap-2 font-bold border-slate-200 dark:border-slate-700"
       >
         <Share2 className="w-4 h-4" />
         {sharing ? "Preparing..." : "Share PDF"}
