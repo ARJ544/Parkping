@@ -6,6 +6,10 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY!
 );
 
+const roundToTwoDecimals = (num: number): number => {
+  return Math.round((num + Number.EPSILON) * 100) / 100;
+};
+
 export async function addDonation({
   source,
   donorName,
@@ -72,9 +76,7 @@ export async function addDonation({
   await supabase
     .from("monthly_donations")
     .update({
-      received_amount:
-        Number(month?.received_amount ?? 0) +
-        amountUsd,
+      received_amount: roundToTwoDecimals(Number(month?.received_amount ?? 0) + amountUsd),
     })
     .eq("month_year", monthYear);
 }
