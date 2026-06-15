@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Phone, Info, X } from "lucide-react";
 import VerifyPhoneUnknownUser from "@/app/verify-phone-unknown-user/verify-phone-unknown-user-client";
+import { DonationModal } from "../donations/DonationModal";
 
 const QUICK_MESSAGES = [
   "Your car is blocking my driveway.",
@@ -12,7 +13,7 @@ const QUICK_MESSAGES = [
 ];
 
 const triggerBtn =
-  "h-12 w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 text-white font-semibold rounded-lg transition active:scale-[0.97]";
+  "h-12 w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 text-white font-semibold rounded-3xl transition active:scale-[0.97]";
 
 const sheet =
   "relative w-full bg-white dark:bg-zinc-900 rounded-t-2xl animate-slideUp max-h-[90dvh] flex flex-col";
@@ -56,6 +57,7 @@ export default function MessageOwner({
   resetTime = "",
 }: MessageOwnerProps) {
   const [open, setOpen] = useState(false);
+  const [shouldOpenDonationModal, setShouldOpenDonationModal] = useState(false);
   const [selected, setSelected] = useState("");
   const [custom, setCustom] = useState("");
   const [calling, setCalling] = useState(false);
@@ -111,7 +113,7 @@ export default function MessageOwner({
         throw new Error(data.error.message || "Failed to send message");
       }
 
-      // Remove below 114-118 after early may(tbd)
+      // Remove below 117-121 after early may(tbd)
       setFeedback({
         msg: "Message successfully sent to WhatsApp",
         isError: false,
@@ -131,6 +133,7 @@ export default function MessageOwner({
       //     window.open(data.waLink, "_blank");
       //   }
       // }, 1500);
+      setShouldOpenDonationModal(true);
 
     } catch (error: any) {
       console.error("Error:", error);
@@ -155,6 +158,7 @@ export default function MessageOwner({
         msg: "Call started for 60s. Incoming shortly — verify the last 4 digits (8181).",
         isError: false,
       });
+      setShouldOpenDonationModal(true);
     } catch (err: any) {
       setFeedback({ msg: err.message || "Something went wrong", isError: true });
     } finally {
@@ -164,13 +168,16 @@ export default function MessageOwner({
 
   return (
     <>
-
+      <DonationModal
+        isOpen={shouldOpenDonationModal}
+        onClose={() => setShouldOpenDonationModal(false)}
+      />
       <button onClick={openSheet} className={triggerBtn}>
         Message Or Call
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-end">
+        <div className="fixed inset-0 z-49 flex items-end">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"

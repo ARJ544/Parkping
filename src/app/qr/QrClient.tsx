@@ -57,6 +57,10 @@ export default function GenerateQRClient({ finder_id }: Props) {
               onShare={shareQR}
             />
 
+            <p className="text-xs leading-normal text-blue-800">
+              <span className="font-semibold text-blue-900">Good to know:</span> Whenever you make or receive a call the number will be: <span className="font-bold text-blue-950 underline decoration-blue-300 underline-offset-2">+1 828-761-8181</span>. Feel free to save it to your contacts.
+            </p>
+
             {/* Template Selector */}
             <TemplateSelector
               templates={TEMPLATES}
