@@ -57,9 +57,20 @@ export default function GenerateQRClient({ finder_id }: Props) {
               onShare={shareQR}
             />
 
-            <p className="text-xs leading-normal text-blue-800">
-              <span className="font-semibold text-blue-900">Good to know:</span> Whenever you make or receive a call the number will be: <span className="font-bold text-blue-950 underline decoration-blue-300 underline-offset-2">+18287618181</span>. Feel free to save it to your contacts.
+            <p className="text-xs leading-normal text-blue-800 dark:text-blue-200">
+              <span className="font-semibold text-blue-900 dark:text-blue-100">
+                Good to know:{" "}
+              </span>
+              Whenever you make or receive a call the number will be:{" "}
+              <a
+                href="tel:+18287618181"
+                className="font-bold text-blue-950 dark:text-white underline decoration-blue-300 dark:decoration-blue-500 underline-offset-2 hover:text-blue-700 dark:hover:text-blue-300"
+              >
+                +18287618181
+              </a>
+              . Feel free to save it to your contacts.
             </p>
+
 
             {/* Template Selector */}
             <TemplateSelector
