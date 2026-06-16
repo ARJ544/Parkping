@@ -28,7 +28,7 @@ export const DonationModal: React.FC<DonationModalProps> = ({
   const feedbackMessage = getDonationMessage(donationData?.percentage ?? 0);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 ">
+    <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 ">
       <div className="border border-white/50 relative w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 shadow-2xl dark:bg-zinc-900 transition-all text-slate-900 dark:text-slate-50">
 
         {/* Close button */}
