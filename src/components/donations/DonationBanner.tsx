@@ -38,7 +38,7 @@ export const DonationBanner: React.FC<DonationBannerProps> = ({
         </div>
 
         {/* Right Side */}
-        <div className="w-12 bg-amber-500 hover:bg-amber-600 transition-colors border-l border-white/20 flex items-center justify-center">
+        <div className="w-12 bg-amber-600 hover:bg-amber-700 transition-colors border-l border-white/20 flex items-center justify-center">
           <span className="font-bold text-lg animate-pulse">?</span>
         </div>
 

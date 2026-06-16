@@ -23,18 +23,18 @@ export const FloatingDonateButton: React.FC<FloatingDonateButtonProps> = ({ onOp
         }}
         whileTap={{ scale: 0.95 }}
         onClick={onOpenModal}
-        className="fixed bottom-6 right-6 z-40 flex h-12 w-12 cursor-grab active:cursor-grabbing items-center justify-center rounded-full bg-amber-500 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-600 group select-none touch-none transition-colors"
+        className="fixed bottom-6 right-6 z-40 flex h-12 w-12 cursor-grab active:cursor-grabbing items-center justify-center rounded-full bg-amber-600 text-white shadow-lg shadow-amber-500/25 hover:bg-amber-700 group select-none touch-none transition-colors"
         title="Support Us"
       >
         {/* Pulse Ring */}
         <motion.div
-          className="absolute inset-0 rounded-full border border-amber-500"
+          className="absolute inset-0 rounded-full border border-amber-700 dark:border-amber-100"
           animate={{
             scale: [1, 1.4],
-            opacity: [0.5, 0],
+            opacity: [0.7, 0],
           }}
           transition={{
-            duration: 2,
+            duration: 3,
             repeat: Infinity,
             ease: "easeOut",
           }}
@@ -47,40 +47,13 @@ export const FloatingDonateButton: React.FC<FloatingDonateButtonProps> = ({ onOp
             rotate: [0, -4, 4, 0],
           }}
           transition={{
-            duration: 2.5,
+            duration: 3,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         >
           <Coffee size={30} strokeWidth={3} />
         </motion.div>
-
-        {/* Steam 1 */}
-        <motion.span
-          className="absolute -top-1 left-[45%] h-2 w-0.5 rounded-full bg-white/60"
-          animate={{
-            y: [0, -8],
-            opacity: [0.8, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-          }}
-        />
-
-        {/* Steam 2 */}
-        <motion.span
-          className="absolute -top-2 left-[55%] h-2 w-0.5 rounded-full bg-white/40"
-          animate={{
-            y: [0, -10],
-            opacity: [0.6, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            delay: 0.5,
-            repeat: Infinity,
-          }}
-        />
       </motion.button>
     </>
   );
