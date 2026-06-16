@@ -133,7 +133,9 @@ export default function MessageOwner({
       //     window.open(data.waLink, "_blank");
       //   }
       // }, 1500);
-      setShouldOpenDonationModal(true);
+      setTimeout(() => {
+        setShouldOpenDonationModal(true);
+      }, 500);
 
     } catch (error: any) {
       console.error("Error:", error);
@@ -155,10 +157,12 @@ export default function MessageOwner({
     try {
       await onCall();
       setFeedback({
-        msg: "Call started for 60s. Incoming shortly — verify the last 4 digits (8181).",
+        msg: "Call started for 60s. Incoming call from: +18287618181.",
         isError: false,
       });
-      setShouldOpenDonationModal(true);
+      setTimeout(() => {
+        setShouldOpenDonationModal(true);
+      }, 1500);
     } catch (err: any) {
       setFeedback({ msg: err.message || "Something went wrong", isError: true });
     } finally {
