@@ -42,7 +42,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
     const message = `CONNECT_${token}`;
     const encodedMessage = encodeURIComponent(message);
 
-    const url = `https://wa.me/916124530919?text=${encodedMessage}`;
+    const url = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
 
     window.open(url, "_blank");
   };

@@ -1,17 +1,7 @@
 import { setAllCookie } from "@/app/actions";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/api-helpers";
 import { NextResponse } from "next/server";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
-);
-
-export function generateSecretCode() {
-  const bytes = crypto.getRandomValues(new Uint8Array(14));
-  const chars = [...bytes].map(b => (b % 36).toString(36)).join("");
-  return chars.slice(0, 7) + "-" + chars.slice(7);
-}
+import { generateSecretCode } from "@/lib/api-helpers";
 
 export async function POST(req: Request) {
   const { user_json_url } = await req.json();

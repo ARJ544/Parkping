@@ -1,6 +1,5 @@
 import { cache } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { generateSecretCode } from "@/app/api/verify-phone/route";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -311,6 +310,13 @@ export async function getTempPhoneNumById(temp_phone_id: string) {
   } catch (error) {
     return { success: false, error };
   }
+}
+
+// Generates secret code for user and updates in database
+export function generateSecretCode() {
+  const bytes = crypto.getRandomValues(new Uint8Array(14));
+  const chars = [...bytes].map(b => (b % 36).toString(36)).join("");
+  return chars.slice(0, 7) + "-" + chars.slice(7);
 }
 
 /**

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { authenticateUser, supabase } from "@/lib/api-helpers";
-import { generateSecretCode } from "@/app/api/verify-phone/route";
+import { generateSecretCode } from "@/lib/api-helpers";
 
 export async function POST() {
   const auth = await authenticateUser(true);

@@ -1,15 +1,10 @@
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/api-helpers";
 import { NextRequest, NextResponse } from "next/server";
 import Twilio from "twilio";
 
 const twilio = Twilio(
   process.env.TWILIO_ACCOUNT_SID!,
   process.env.TWILIO_AUTH_TOKEN!
-);
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
 );
 
 export async function POST(req: NextRequest) {

@@ -1,12 +1,7 @@
-import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { setAllCookie } from "@/app/actions";
 import { authenticateUser } from "@/lib/api-helpers";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
-);
+import { supabase } from "@/lib/api-helpers";
 
 export async function POST(req: Request) {
   const { user_json_url } = await req.json();

@@ -133,7 +133,7 @@ export async function POST(request: Request) {
   // const message = `To: ${bsuid}\n\nMessage: ${formattedMessage}`;
   // const encodedMessage = encodeURIComponent(message);
 
-  // const waLink = `https://wa.me/916124530919?text=${encodedMessage}`;
+  // const waLink = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
   // return NextResponse.json({ success: true, waLink });
 
 }

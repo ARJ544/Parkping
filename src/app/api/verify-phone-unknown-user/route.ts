@@ -1,12 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { IsVerified } from "@/app/actions";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
-);
+import { supabase } from "@/lib/api-helpers";
 
 export async function POST(req: Request) {
   const { user_json_url } = await req.json();

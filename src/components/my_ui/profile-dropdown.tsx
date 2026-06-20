@@ -42,7 +42,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
       return;
     }
     const message = `CONNECT_${token}`;
-    const url = `https://wa.me/916124530919?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
 

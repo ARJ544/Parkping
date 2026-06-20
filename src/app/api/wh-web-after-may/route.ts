@@ -1,11 +1,6 @@
 import { after, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-import { generateSecretCode } from "@/app/api/verify-phone/route";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
-);
+import { supabase } from "@/lib/api-helpers";
+import { generateSecretCode } from "@/lib/api-helpers";
 
 const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || "error";
 

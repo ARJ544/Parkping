@@ -1,10 +1,5 @@
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/api-helpers";
 import { convertToUSD } from "@/lib/donations/currency";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
-);
 
 const roundToTwoDecimals = (num: number): number => {
   return Math.round((num + Number.EPSILON) * 100) / 100;

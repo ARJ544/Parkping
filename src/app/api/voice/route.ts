@@ -2,16 +2,11 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import Twilio from "twilio";
 import { getCaller, getUserByFinderId } from "@/lib/api-helpers";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/api-helpers";
 
 const client = Twilio(
   process.env.TWILIO_ACCOUNT_SID!,
   process.env.TWILIO_AUTH_TOKEN!,
-);
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
 );
 
 export async function POST() {

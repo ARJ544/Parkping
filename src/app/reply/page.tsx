@@ -29,7 +29,7 @@ export default function ReplyPage() {
     if (to) {
       const sanitized = sanitizeForSend(message);
       const text = `To: ${to}\n\nMessage: ${sanitized || "Type your message here..."}`;
-      setWaLink(`https://wa.me/916124530919?text=${encodeURIComponent(text)}`);
+      setWaLink(`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(text)}`);
     }
   }, [to, message]);
 
