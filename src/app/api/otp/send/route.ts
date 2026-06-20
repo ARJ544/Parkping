@@ -25,8 +25,7 @@ async function sendWhatsAppOTP(
   otp: string
 ): Promise<boolean> {
   try {
-    const response = await fetch(
-      `https://graph.facebook.com/v25.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
+    const response = await fetch(`https://graph.facebook.com/v25.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
       {
         method: "POST",
         headers: {
@@ -37,10 +36,35 @@ async function sendWhatsAppOTP(
           messaging_product: "whatsapp",
           recipient_type: "individual",
           to,
-          type: "text",
-          text: {
-            body: otp,
-          },
+          type: "template",
+          template: {
+            name: "auth_otp_code", // template name (pre built template code = verify_code_1)
+            language: {
+              code: "en_US"
+            },
+            components: [
+              {
+                type: "body",
+                parameters: [
+                  {
+                    type: "text",
+                    text: otp
+                  }
+                ]
+              },
+              {
+                type: "button",
+                sub_type: "url",
+                index: "0",
+                parameters: [
+                  {
+                    type: "text",
+                    text: otp // Feeds the raw number directly into the "Copy code" button
+                  }
+                ]
+              }
+            ]
+          }
         }),
       }
     );
