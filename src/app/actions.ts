@@ -123,3 +123,9 @@ export async function getAllCookie(): Promise<UserCookie> {
     phone_num: get("phone_num"),
   };
 }
+
+export async function revalidateLayout() {
+  const { revalidatePath } = await import("next/cache");
+  revalidatePath("/");
+  revalidatePath("/qr");
+}

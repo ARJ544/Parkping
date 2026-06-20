@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Phone, Info, X } from "lucide-react";
-import VerifyPhoneUnknownUser from "@/app/verify-phone-unknown-user/verify-phone-unknown-user-client";
 import { DonationModal } from "../donations/DonationModal";
+import Link from "next/link";
 
 const QUICK_MESSAGES = [
   "Your car is blocking my driveway.",
@@ -19,11 +19,13 @@ const sheet =
   "relative w-full bg-brand-card dark:bg-slate-900 rounded-t-2xl animate-slideUp max-h-[90dvh] flex flex-col border-t border-slate-100 dark:border-slate-800";
 
 const sendBtn =
-  "w-full flex items-center justify-center gap-2 bg-brand-wa hover:bg-[#1ebe5d] disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed";
+  "w-full flex items-center justify-center gap-2 bg-brand-wa hover:bg-[#1ebe5d] disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed cursor-pointer";
 
 const callBtn =
-  "flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed";
+  "flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-zinc-100 dark:disabled:bg-zinc-800 disabled:text-zinc-400 dark:disabled:text-zinc-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed cursor-pointer";
 
+const verifyPhoneBtn =
+  "w-full flex items-center justify-center gap-2 bg-red-500 text-white dark:bg-red-400 dark:text-black text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed cursor-pointer";
 
 export interface MessageOwnerProps {
   autoOpen?: boolean;
@@ -42,7 +44,6 @@ export default function MessageOwner({
   autoOpen = false,
   onCall,
   hasPhoneNumber = false,
-  tempPhoneId,
   finderId = "",
   callCredits = 0,
   usedCallCredits = 0,
@@ -227,16 +228,17 @@ export default function MessageOwner({
                         setCustom("");
                       }}
                       className={`flex items-center gap-3 rounded-full px-3.5 py-3 text-left text-[13.5px] leading-snug transition-all
-                    ${active
+                        ${active
                           ? "bg-brand-wa/10 border border-brand-wa"
                           : "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 hover:border-coral/50 dark:hover:border-coral/40"
                         }`}
                     >
-                      <span className={`w-4 h-4 rounded-full border-[1.5px] shrink-0 flex items-center justify-center transition-all
-                    ${active
-                          ? "bg-brand-wa border-brand-wa"
-                          : "border-gray-300 dark:border-slate-500"
-                        }`}
+                      <span
+                        className={`w-4 h-4 rounded-full border-[1.5px] shrink-0 flex items-center justify-center transition-all
+                            ${active
+                            ? "bg-brand-wa border-brand-wa"
+                            : "border-gray-300 dark:border-slate-500"
+                          }`}
                       >
                         {active && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
                       </span>
@@ -266,17 +268,18 @@ export default function MessageOwner({
               </div>
 
               {/* Feedback */}
-              {feedback && (feedback.msg !== "") && (
-                <div className={`flex items-start gap-2 rounded-full border px-3 mx-4 mt-3 py-2 text-sm
-              ${feedback.isError
-                    ? "border-red-200 bg-red-50 text-red-700 dark:border-red-700/60 dark:bg-red-900/30 dark:text-red-200"
-                    : "border-green-200 bg-green-50 text-green-700 dark:border-green-700/60 dark:bg-green-900/30 dark:text-green-200"
-                  }`}
+              {feedback && feedback.msg !== "" && (
+                <div
+                  className={`flex items-start gap-2 rounded-full border px-3 mx-4 mt-3 py-2 text-sm
+                ${feedback.isError ? "border-red-200 bg-red-50 text-red-700 dark:border-red-700/60 dark:bg-red-900/30 dark:text-red-200" : "border-green-200 bg-green-50 text-green-700 dark:border-green-700/60 dark:bg-green-900/30 dark:text-green-200"}`}
                 >
-                  <span className="mt-0.5 shrink-0">{feedback.isError ? "✕" : "✓"}</span>
+                  <span className="mt-0.5 shrink-0">
+                    {feedback.isError ? "✕" : "✓"}
+                  </span>
                   <span className="text-left">{feedback.msg}</span>
                 </div>
-              )}
+              )
+              }
 
               {/* Actions */}
               <div className="px-4 pt-4 flex flex-col gap-3">
@@ -304,12 +307,15 @@ export default function MessageOwner({
                       {calling ? "Calling..." : "Call"}
                     </button>
                   ) : (
-                    <div className="flex-1">
-                      <VerifyPhoneUnknownUser
-                        temp_phone={tempPhoneId}
-                        finder_id={finderId}
-                      />
-                    </div>
+                    <Link href={`/verify-phone-unknown-user?next=${encodeURIComponent(finderId)}`}
+                      className="flex-1"
+                    >
+                      <button
+                        className={verifyPhoneBtn}
+                      >
+                        Verify Phone to Call
+                      </button>
+                    </Link>
                   )}
                 </div>
 
@@ -333,70 +339,78 @@ export default function MessageOwner({
                   </div>
                 )}
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </div >
+          </div >
+        </div >
+      )
+      }
 
       {/* Credits Modal */}
-      {showCredits && (
-        <div className="fixed inset-0 z-61 flex items-center justify-center px-6">
-          <div
-            className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
-            onClick={() => setShowCredits(false)}
-          />
-          <div className="relative w-full max-w-xs rounded-2xl shadow-xl p-5 flex flex-col gap-3
-              border border-brand-border
-              bg-brand-card dark:bg-brand-navy">
-
-            {/* Header */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-brand-heading dark:text-brand-heading">
-                Call Credits
-              </span>
-              <button
-                onClick={() => setShowCredits(false)}
-                className="w-7 h-7 flex items-center justify-center rounded-full
-                    bg-brand-border/60 dark:bg-brand-border
-                    text-brand-muted dark:text-brand-subtle
-                    hover:bg-coral/10 hover:text-coral
-                    dark:hover:bg-coral/10 dark:hover:text-coral
-                    transition-colors"
-              >
-                <X size={13} />
-              </button>
-            </div>
-
-            <hr className="border-brand-border" />
-
-            <div className="flex flex-col gap-2 text-[13px]">
+      {
+        showCredits && (
+          <div className="fixed inset-0 z-61 flex items-center justify-center px-6">
+            <div
+              className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+              onClick={() => setShowCredits(false)}
+            />
+            <div
+              className="relative w-full max-w-xs rounded-2xl shadow-xl p-5 flex flex-col gap-3
+        border border-brand-border
+        bg-brand-card dark:bg-brand-navy"
+            >
+              {/* Header */}
               <div className="flex items-center justify-between">
-                <span className="text-brand-muted">Remaining</span>
-                <span className="font-semibold text-coral bg-orange-50 dark:bg-coral/10 px-2 py-0.5 rounded-lg">
-                  {callCredits}
+                <span className="text-sm font-semibold text-brand-heading dark:text-brand-heading">
+                  Call Credits
                 </span>
+                <button
+                  onClick={() => setShowCredits(false)}
+                  className="w-7 h-7 flex items-center justify-center rounded-full
+            bg-brand-border/60 dark:bg-brand-border
+            text-brand-muted dark:text-brand-subtle
+            hover:bg-coral/10 hover:text-coral
+            dark:hover:bg-coral/10 dark:hover:text-coral
+            transition-colors"
+                >
+                  <X size={13} />
+                </button>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-brand-muted">Used</span>
-                <span className="font-semibold text-slate-700 dark:text-brand-heading">
-                  {usedCallCredits}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-brand-muted">Resets</span>
-                <span className="text-slate-600 dark:text-brand-muted">{resetTime}</span>
-              </div>
-            </div>
 
-            <hr className="border-brand-border" />
+              <hr className="border-brand-border" />
 
-            <div className="flex flex-col gap-1 text-[11.5px] text-brand-muted dark:text-brand-subtle">
-              <p>• One credit used only if receiver answers</p>
-              <p>• For two unsuccessful calls, 1 credit will be deducted</p>
+              <div className="flex flex-col gap-2 text-[13px]">
+                <div className="flex items-center justify-between">
+                  <span className="text-brand-muted">Remaining</span>
+                  <span className="font-semibold text-coral bg-orange-50 dark:bg-coral/10 px-2 py-0.5 rounded-lg">
+                    {callCredits}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-brand-muted">Used</span>
+                  <span className="font-semibold text-slate-700 dark:text-brand-heading">
+                    {usedCallCredits}
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-brand-muted">Resets</span>
+                  <span className="text-slate-600 dark:text-brand-muted">
+                    {resetTime}
+                  </span>
+                </div>
+              </div>
+
+              <hr className="border-brand-border" />
+
+              <div className="flex flex-col gap-1 text-[11.5px] text-brand-muted dark:text-brand-subtle">
+                <p>• One credit used only if receiver answers</p>
+                <p>• For two unsuccessful calls, 1 credit will be deducted</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
     </>
   );
 }
