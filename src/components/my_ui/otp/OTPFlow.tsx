@@ -16,7 +16,6 @@ interface OTPFlowProps {
 function OTPHelpModal({
   phoneDisplay,
   onClose,
-  onOpenWhatsapp,
   onChangeNumber,
 }: {
   phoneDisplay: string;
@@ -31,7 +30,7 @@ function OTPHelpModal({
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+      <div className="relative w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl dark:border-slate-600 dark:bg-slate-900">
 
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-medium text-slate-900 dark:text-white">
@@ -45,31 +44,41 @@ function OTPHelpModal({
           </button>
         </div>
 
-        <div className="divide-y divide-slate-100 dark:divide-slate-800">
+        <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-96 overflow-y-auto pr-1">
 
-          <div className="py-3 flex items-start justify-between gap-3">
-            <div>
-              <p className="text-xs font-medium text-slate-700 dark:text-slate-200">⏱ WhatsApp window expired</p>
-              <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Message our number to open a 24-hr window.</p>
-            </div>
-            <button onClick={onOpenWhatsapp} className="text-xs font-medium text-green-600 dark:text-green-400 whitespace-nowrap shrink-0 cursor-pointer underline underline-offset-2">
-              Fix →
-            </button>
-          </div>
-
+          {/* 1. Account & Number Errors */}
           <div className="py-3 flex items-start justify-between gap-3">
             <div>
               <p className="text-xs font-medium text-slate-700 dark:text-slate-200">📱 Wrong number?</p>
               <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Sent to {phoneDisplay}. Go back to change it.</p>
             </div>
-            <button onClick={onChangeNumber} className="text-xs font-medium text-slate-500 dark:text-slate-400 underline underline-offset-2 whitespace-nowrap shrink-0">
+            <button onClick={onChangeNumber} className="text-xs font-medium text-slate-500 dark:text-slate-400 underline underline-offset-2 whitespace-nowrap shrink-0 cursor-pointer hover:text-slate-700 dark:hover:text-slate-300 transition-colors">
               Change →
             </button>
           </div>
 
+          {/* 2. Expiry */}
           <div className="py-3">
             <p className="text-xs font-medium text-slate-700 dark:text-slate-200">🔄 OTP expired?</p>
             <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">OTPs are valid for 10 minutes. Close this and hit resend.</p>
+          </div>
+
+          {/* 3. Network & Signal Issues */}
+          <div className="py-3">
+            <p className="text-xs font-medium text-slate-700 dark:text-slate-200">📶 Network & Carrier Issues</p>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Weak cell reception, carrier server overload, or corporate shortcode blocking can delay text messages.</p>
+          </div>
+
+          {/* 4. Phone Configurations */}
+          <div className="py-3">
+            <p className="text-xs font-medium text-slate-700 dark:text-slate-200">⚙️ Device & App Settings</p>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Check if "Do Not Disturb" is active, your inbox storage is full, or if the text was auto-routed to your SMS spam folder.</p>
+          </div>
+
+          {/* 5. Security Restrictions */}
+          <div className="py-3">
+            <p className="text-xs font-medium text-slate-700 dark:text-slate-200">🔒 Security & SIM Swaps</p>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">Recent SIM card changes or active roaming profiles often temporarily block automated system OTP messages.</p>
           </div>
 
         </div>
