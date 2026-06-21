@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from "@/lib/api-helpers";
 import { validatePhoneNumber, verifyOTP } from "@/lib/otp-helper";
 import { setAllCookie } from "@/app/actions";
 import { IsVerified } from "@/app/actions";
 import crypto from "crypto";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!
-);
 
 const ONE_HOUR = 60 * 60;
 const MAX_OTP_ATTEMPTS = 5;
