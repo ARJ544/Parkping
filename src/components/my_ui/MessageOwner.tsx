@@ -157,7 +157,7 @@ export default function MessageOwner({
     try {
       await onCall();
       setFeedback({
-        msg: "Call started for 60s. Incoming call from: +18287618181.",
+        msg: `Call started for 60s. Incoming call from: ${process.env.NEXT_PUBLIC_TWILIO_NUMBER}.`,
         isError: false,
       });
       setTimeout(() => {

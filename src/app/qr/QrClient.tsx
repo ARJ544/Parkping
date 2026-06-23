@@ -66,7 +66,7 @@ export default function GenerateQRClient({ finder_id }: Props) {
                 href="tel:+18287618181"
                 className="font-bold text-blue-950 dark:text-white underline decoration-blue-300 dark:decoration-blue-500 underline-offset-2 hover:text-blue-700 dark:hover:text-blue-300"
               >
-                +18287618181
+                {process.env.NEXT_PUBLIC_TWILIO_NUMBER}
               </a>
               . Feel free to save it to your contacts.
             </p>
