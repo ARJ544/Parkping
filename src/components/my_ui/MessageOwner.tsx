@@ -181,7 +181,7 @@ export default function MessageOwner({
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-49 flex items-end">
+        <div className="fixed inset-0 z-60 flex items-end">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
@@ -333,7 +333,7 @@ export default function MessageOwner({
       )}
 
       {showCredits && (
-        <div className="fixed inset-0 z-60 flex items-center justify-center px-6">
+        <div className="fixed inset-0 z-61 flex items-center justify-center px-6">
           <div
             className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
             onClick={() => setShowCredits(false)}
