@@ -1,14 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Sora } from "next/font/google";
+import { Unbounded } from "next/font/google";
 import { useQRGeneration } from "@/hooks/useQRGeneration";
 import QRPreview from "@/components/my_ui/QRPreview";
 import TemplateSelector from "@/components/my_ui/TemplateSelector";
 import QRActionButtons from "@/components/my_ui/QRActionButtons";
 
-const sora = Sora({ subsets: ["latin"], weight: ["700", "800"] });
-
+const unbounded = Unbounded({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "fallback",
+  fallback: ["BiauKai", "-apple-system", "BlinkMacSystemFont", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans TC", "sans-serif"]
+});
 type Props = { finder_id: string };
 
 const CW = 360;
@@ -29,7 +33,7 @@ export default function GenerateQRClient({ finder_id }: Props) {
       <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-10">
 
         <div className="flex flex-col gap-1">
-          <h1 className={`${sora.className} text-3xl font-extrabold tracking-tight`}>Your QR Code</h1>
+          <h1 className={`${unbounded.className} text-3xl font-extrabold tracking-tight`}>Your QR Code</h1>
           <p className="text-sm text-slate-400">Choose a template, then download your sticker.</p>
         </div>
 

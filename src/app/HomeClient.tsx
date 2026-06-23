@@ -1,13 +1,18 @@
 'use client'
 
-import { Car, Bike, Briefcase, Tag, Laptop, Package, ArrowRight, Trash2, Edit3, ScanQrCodeIcon, ChevronUp, ChevronDown } from "lucide-react";
-import { Sora } from "next/font/google";
+import { Car, Bike, Briefcase, Tag, Laptop, Package, ArrowRight, ScanQrCodeIcon, ChevronUp, ChevronDown } from "lucide-react";
+import { Unbounded } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { COMPANY_NAME } from "@/config/company";
 import { useEffect, useState } from "react";
 
-const sora = Sora({ subsets: ["latin"], weight: ["700", "800"] });
+const unbounded = Unbounded({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "fallback",
+  fallback: ["BiauKai", "-apple-system", "BlinkMacSystemFont", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans TC", "sans-serif"]
+});
 
 const useCases = [
   { icon: Car, label: "Vehicle", desc: "Let someone reach you about your parked car — anonymously." },
@@ -54,7 +59,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
         <section className="py-8 grid gap-4 items-center max-w-6xl mx-auto md:grid-cols-2">
 
           <div className="hidden md:flex flex-col gap-6 px-4 max-w-xl">
-            <h1 className={`${sora.className} text-5xl md:text-5xl font-extrabold leading-tight tracking-tight`}>
+            <h1 className={`${unbounded.className} text-5xl md:text-5xl font-extrabold leading-tight tracking-tight`}>
               Stay Reachable.<br />
               Without -<br />
               <span className="text-blue-500">Showing your number.</span>
@@ -128,7 +133,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
 
         {/* USE CASES */}
         <section className="py-8">
-          <h2 className={`${sora.className} text-2xl font-extrabold tracking-tight mb-2`}>Typical Use Cases.</h2>
+          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2`}>Typical Use Cases.</h2>
           <p className="text-sm text-slate-400 mb-8">Not just vehicles — use it on anything.</p>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {useCases.map(({ icon: Icon, label, desc }) => (
@@ -147,7 +152,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
 
         {/* HOW IT WORKS */}
         <section className="py-10">
-          <h2 className={`${sora.className} text-2xl font-extrabold tracking-tight mb-2`}>How it works.</h2>
+          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2`}>How it works.</h2>
           <p className="text-sm text-slate-400 mb-8">Up and running in under 30 seconds.</p>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {steps.map(({ n, title, body }) => (
@@ -166,7 +171,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
 
         {/* CTA */}
         <section className="py-10 flex flex-col gap-4">
-          <h2 className={`${sora.className} text-3xl md:text-4xl font-extrabold tracking-tight`}>
+          <h2 className={`${unbounded.className} text-3xl md:text-4xl font-extrabold tracking-tight`}>
             Ready? It takes 30 seconds.
           </h2>
           <p className="text-sm text-slate-400">Free. No credit card. No personal data shared.</p>

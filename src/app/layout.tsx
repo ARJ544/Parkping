@@ -2,7 +2,7 @@ import { SerwistProvider } from "./serwist";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/my_ui/navigation";
-import { Poppins } from "next/font/google";
+import { Chiron_GoRound_TC, Poppins } from "next/font/google";
 import "./globals.css";
 import { Mail, MapPin } from "lucide-react";
 import OnlineOfflineComponent from "@/components/my_ui/OnlineOfflineComponent";
@@ -13,10 +13,11 @@ import { LayoutDonationWrapper } from "@/components/donations/LayoutDonationWrap
 import { COMPANY_NAME } from "@/config/company";
 import { DonationProvider } from "@/providers/DonationProvider";
 
-const poppins = Poppins({
-  weight: "400",
-  style: "normal",
-  display: "swap",
+const chiron = Chiron_GoRound_TC({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "fallback",
+  fallback: ["BiauKai", "-apple-system", "BlinkMacSystemFont", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans TC", "sans-serif"]
 });
 
 export const metadata: Metadata = {
@@ -66,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.className} selection:bg-teal-300 selection:text-teal-950`}
+        className={`${chiron.className} selection:bg-teal-300 selection:text-teal-950`}
       >
         <SerwistProvider swUrl="/serwist/sw.js">
           <ThemeProvider
