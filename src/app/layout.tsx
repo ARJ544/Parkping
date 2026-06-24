@@ -16,7 +16,8 @@ import { DonationProvider } from "@/providers/DonationProvider";
 const chiron = Chiron_GoRound_TC({
   subsets: ["latin"],
   weight: ["400"],
-  display: "fallback",
+  display: "swap",
+  adjustFontFallback: true,
   fallback: ["BiauKai", "-apple-system", "BlinkMacSystemFont", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans TC", "sans-serif"]
 });
 

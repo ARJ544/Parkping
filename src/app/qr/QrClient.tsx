@@ -10,7 +10,8 @@ import QRActionButtons from "@/components/my_ui/QRActionButtons";
 const unbounded = Unbounded({
   subsets: ["latin"],
   weight: ["700", "800"],
-  display: "fallback",
+  display: "swap",
+  adjustFontFallback: true,
   fallback: ["BiauKai", "-apple-system", "BlinkMacSystemFont", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans TC", "sans-serif"]
 });
 type Props = { finder_id: string };

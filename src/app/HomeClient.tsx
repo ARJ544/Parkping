@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { COMPANY_NAME } from "@/config/company";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const unbounded = Unbounded({
   subsets: ["latin"],
   weight: ["700", "800"],
-  display: "fallback",
+  display: "swap",
+  adjustFontFallback: true,
   fallback: ["BiauKai", "-apple-system", "BlinkMacSystemFont", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans TC", "sans-serif"]
 });
 
@@ -71,10 +73,11 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
           </div>
 
           <div className="flex flex-col gap-4">
-            <img
+            <Image
               src="/bg.jpg"
               alt="QR preview"
               className="w-full h-auto object-contain rounded-2xl"
+              priority
             />
             <p className="md:hidden text-base italic text-[#8a7a5a] dark:text-[#89aee6] max-w-sm">
               Multipurpose QR codes for anything you own. Stay reachable — Get Contacted anonymously.
