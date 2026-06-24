@@ -118,7 +118,7 @@ export default function RootLayout({
                         </Link>
                         <Link
                           className="text-slate-400 hover:text-primary transition-colors"
-                          href="#"
+                          href="mail.abhinavranjanjha@gmail.com"
                         >
                           <Mail className="h-5 w-5" />
                         </Link>
@@ -132,13 +132,13 @@ export default function RootLayout({
                       <nav className="flex flex-col gap-3">
                         <Link
                           className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
-                          href="#"
+                          href="/about-us"
                         >
                           About Us
                         </Link>
                         <Link
                           className="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
-                          href="#"
+                          href="/contact-us"
                         >
                           Contact
                         </Link>

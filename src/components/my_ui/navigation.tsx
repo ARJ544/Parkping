@@ -5,7 +5,7 @@ import { getAllCookie } from "@/app/actions";
 import Image from "next/image";
 import { COMPANY_NAME } from "@/config/company";
 import ProfileDropdown from "@/components/my_ui/profile-dropdown";
-import { authenticateUser, refreshUserToken } from "@/lib/api-helpers";
+import { authenticateUser } from "@/lib/api-helpers";
 
 export async function Navigation() {
   const { loggedin, verified: isVerified } = await getAllCookie();
