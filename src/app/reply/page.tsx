@@ -60,8 +60,8 @@ export default function ReplyPage() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100 dark:bg-neutral-900 px-4 transition-colors duration-300">
-      <div className="w-full max-w-xs sm:max-w-sm rounded-2xl bg-white dark:bg-neutral-800 shadow-xl p-5 sm:p-6 text-center border border-gray-200 dark:border-neutral-700">
+    <div className="flex h-screen items-center justify-center px-4 transition-colors duration-300">
+      <div className="w-full max-w-xs sm:max-w-sm rounded-2xl bg-[#fcf2ce] dark:bg-neutral-800 shadow-xl p-5 sm:p-6 text-center border border-[#fee075] dark:border-neutral-700">
 
         {/* Title */}
         <h2 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">

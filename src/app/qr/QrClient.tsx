@@ -29,16 +29,18 @@ export default function GenerateQRClient({ finder_id }: Props) {
   const [selectedTemplate, setSelectedTemplate] = useState(TEMPLATES[0]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#080c10] text-slate-900 dark:text-slate-50">
+    <div className="min-h-screen text-slate-900 dark:text-slate-50">
       <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-10">
-
         <div className="flex flex-col gap-1">
-          <h1 className={`${unbounded.className} text-3xl font-extrabold tracking-tight`}>Your QR Code</h1>
-          <p className="text-sm text-slate-400">Choose a template, then download your sticker.</p>
+          <h1 className={`${unbounded.className} text-3xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8]`}>
+            Your QR Code
+          </h1>
+          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6]">
+            Choose a template, then download your sticker.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-
           {/* LEFT — Preview */}
           <QRPreview
             templateSrc={selectedTemplate.src}
@@ -52,8 +54,6 @@ export default function GenerateQRClient({ finder_id }: Props) {
 
           {/* RIGHT — Controls */}
           <div className="flex flex-col gap-8">
-
-            {/* Action Buttons */}
             <QRActionButtons
               downloading={downloading}
               sharing={sharing}
@@ -61,32 +61,32 @@ export default function GenerateQRClient({ finder_id }: Props) {
               onShare={shareQR}
             />
 
-            <p className="text-xs leading-normal text-blue-800 dark:text-blue-200">
-              <span className="font-semibold text-blue-900 dark:text-blue-100">
-                Good to know:{" "}
-              </span>
-              Whenever you make or receive a call the number will be:{" "}
-              <a
-                href="tel:+18287618181"
-                className="font-bold text-blue-950 dark:text-white underline decoration-blue-300 dark:decoration-blue-500 underline-offset-2 hover:text-blue-700 dark:hover:text-blue-300"
-              >
-                {process.env.NEXT_PUBLIC_TWILIO_NUMBER}
-              </a>
-              . Feel free to save it to your contacts.
-            </p>
+            {/* Info box */}
+            <div className="rounded-2xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0d1b33] px-4 py-3">
+              <p className="text-xs leading-relaxed text-[#8a7a5a] dark:text-[#89aee6]">
+                <span className="font-semibold text-slate-900 dark:text-[#e8edf8]">
+                  Good to know:{" "}
+                </span>
+                Whenever you make or receive a call the number will be:{" "}
+                <a
+                  href="tel:+18287618181"
+                  className="font-bold text-[#d85a30] dark:text-[#d85a30] underline decoration-[#d85a30]/40 underline-offset-2 hover:text-[#c04e28] transition-colors"
+                >
+                  {process.env.NEXT_PUBLIC_TWILIO_NUMBER}
+                </a>
+                . Feel free to save it to your contacts.
+              </p>
+            </div>
 
-
-            {/* Template Selector */}
             <TemplateSelector
               templates={TEMPLATES}
               selectedTemplate={selectedTemplate}
               onSelectTemplate={setSelectedTemplate}
             />
-
           </div>
-
         </div>
       </div>
     </div>
   );
+  
 }

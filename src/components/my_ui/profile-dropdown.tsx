@@ -68,31 +68,22 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
   return (
     <>
       <DropdownMenu>
-        {/* ── Trigger ── */}
+        {/* Trigger */}
         <DropdownMenuTrigger asChild>
           <button
             className={cn(
               "group relative flex items-center justify-center",
-              "h-9 w-9 rounded-full cursor-pointer",
-              "bg-linear-to-br from-blue-500 via-blue-600 to-indigo-600",
-              "shadow-[0_2px_12px_rgba(59,130,246,0.45)]",
-              "hover:shadow-[0_4px_20px_rgba(59,130,246,0.6)]",
+              "h-9 w-9 rounded-lg cursor-pointer",
+              "bg-[#d85a30]",
+              "hover:bg-[#c04e28]",
               "hover:scale-[1.08] active:scale-95",
               "transition-all duration-200 ease-out",
-              "ring-[2.5px] ring-blue-400/40 hover:ring-blue-400/70",
-              "outline-none focus-visible:ring-[3px] focus-visible:ring-blue-500/70"
+              "ring-[2.5px] ring-[#d85a30]/30 hover:ring-[#d85a30]/60",
+              "outline-none focus-visible:ring-[3px] focus-visible:ring-[#d85a30]/70"
             )}
             aria-label="Open profile menu"
           >
-            <CircleUserRound className="h-4.5 w-4.5 text-white drop-shadow-sm" />
-            <span
-              className={cn(
-                "absolute inset-0 rounded-full",
-                "bg-linear-to-br from-blue-400/20 to-indigo-500/20",
-                "opacity-0 group-hover:opacity-100 group-hover:scale-110",
-                "transition-all duration-300"
-              )}
-            />
+            <CircleUserRound className="h-4.5 w-4.5 text-white" />
             {isVerified && (
               <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-emerald-400 ring-2 ring-background shadow-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-white" />
@@ -101,32 +92,29 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
           </button>
         </DropdownMenuTrigger>
 
-        {/* ── Content ── */}
+        {/* Content */}
         <DropdownMenuContent
           align="end"
           sideOffset={8}
           className={cn(
             "z-50 w-64 rounded-2xl p-0 overflow-hidden",
-            "border border-border/60",
-            "bg-background/95 backdrop-blur-xl",
-            "shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]",
+            "border border-[#e8dfc4] dark:border-[#1e2a4a]",
+            "bg-[#fef9ed]/95 dark:bg-[#0a0f1e]/95 backdrop-blur-xl",
+            "shadow-[0_8px_40px_rgba(0,0,0,0.10)]",
             "dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)]",
             "animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 duration-150"
           )}
         >
-          {/* ── Profile Header ── */}
+          {/* Profile Header */}
           <div className="relative px-4 pt-4 pb-3 overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-br from-blue-500/8 via-indigo-500/5 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/8 to-transparent pointer-events-none" />
             <div className="relative flex items-center gap-3">
               <div className="relative shrink-0">
-                <div
-                  className={cn(
-                    "flex h-11 w-11 items-center justify-center rounded-full",
-                    "bg-linear-to-br from-blue-500 via-blue-600 to-indigo-600",
-                    "shadow-[0_2px_12px_rgba(59,130,246,0.4)]",
-                    "ring-2 ring-blue-400/30"
-                  )}
-                >
+                <div className={cn(
+                  "flex h-11 w-11 items-center justify-center rounded-xl",
+                  "bg-[#d85a30]",
+                  "ring-2 ring-[#d85a30]/30"
+                )}>
                   <CircleUserRound className="h-5 w-5 text-white" />
                 </div>
                 {isVerified && (
@@ -136,7 +124,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
                 )}
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="text-sm font-semibold text-foreground leading-tight tracking-tight">
+                <span className="text-sm font-semibold text-slate-900 dark:text-[#e8edf8] leading-tight tracking-tight">
                   My Account
                 </span>
                 {isVerified ? (
@@ -145,7 +133,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
                     Verified account
                   </span>
                 ) : (
-                  <span className="mt-0.5 text-[11px] text-muted-foreground">
+                  <span className="mt-0.5 text-[11px] text-[#8a7a5a] dark:text-[#4a6fa5]">
                     Unverified account
                   </span>
                 )}
@@ -153,11 +141,11 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
             </div>
           </div>
 
-          <DropdownMenuSeparator className="my-0 bg-border/50" />
+          <DropdownMenuSeparator className="my-0 bg-[#e8dfc4] dark:bg-[#1e2a4a]" />
 
-          {/* ── Settings Section ── */}
+          {/* Account Section */}
           <div className="px-2 py-2 space-y-0.5">
-            <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/70">
+            <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#8a7a5a] dark:text-[#4a6fa5]">
               Account
             </p>
 
@@ -166,55 +154,52 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
               <Link
                 href="/update"
                 className={cn(
-                  "flex items-center gap-2.5 px-2.5 py-2 rounded-lg w-full",
-                  "text-sm text-foreground/80 hover:text-foreground",
-                  "hover:bg-accent/60",
+                  "flex items-center gap-2.5 px-2.5 py-2 rounded-xl w-full",
+                  "text-sm text-slate-700 dark:text-[#89aee6] hover:text-slate-900 dark:hover:text-[#e8edf8]",
+                  "hover:bg-[#d85a30]/8 dark:hover:bg-[#d85a30]/10",
                   "transition-all duration-150 cursor-pointer",
-                  "focus:outline-none focus:bg-accent/60"
+                  "focus:outline-none focus:bg-[#d85a30]/8"
                 )}
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-muted/80 group-hover:bg-blue-500/10 transition-colors">
-                  <Phone className="h-3.5 w-3.5 text-muted-foreground group-hover:text-blue-500 transition-colors" />
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#e8dfc4]/60 dark:bg-[#1e2a4a] group-hover:bg-[#d85a30]/15 transition-colors">
+                  <Phone className="h-3.5 w-3.5 text-[#8a7a5a] dark:text-[#4a6fa5] group-hover:text-[#d85a30] transition-colors" />
                 </span>
                 <span className="flex-1 font-medium">Update Phone</span>
-                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-muted-foreground/70 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="h-3.5 w-3.5 text-[#8a7a5a]/40 dark:text-[#4a6fa5]/40 group-hover:text-[#d85a30]/70 group-hover:translate-x-0.5 transition-all" />
               </Link>
             </DropdownMenuItem>
 
             {/* WhatsApp Connect / Disconnect */}
             {bsuid ? (
               <DropdownMenuItem
-                onSelect={(e) => {
-                  setShowDisconnectWarning(true);
-                }}
+                onSelect={() => setShowDisconnectWarning(true)}
                 className={cn(
-                  "group flex items-center gap-2.5 px-2.5 py-2 rounded-lg",
+                  "group flex items-center gap-2.5 px-2.5 py-2 rounded-xl",
                   "text-sm text-orange-500/80 hover:text-orange-600",
                   "hover:bg-orange-500/8 focus:bg-orange-500/8",
                   "cursor-pointer transition-all duration-150"
                 )}
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-orange-500/8 group-hover:bg-orange-500/15 transition-colors">
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-500/8 group-hover:bg-orange-500/15 transition-colors">
                   <WifiOff className="h-3.5 w-3.5 text-orange-400 group-hover:text-orange-500 transition-colors" />
                 </span>
                 <span className="flex-1 font-medium">Disconnect WhatsApp</span>
                 <ChevronRight className="h-3.5 w-3.5 text-orange-300/60 group-hover:text-orange-400/80 group-hover:translate-x-0.5 transition-all" />
               </DropdownMenuItem>
             ) : (
-              // Not connected — show Connect
               <DropdownMenuItem
                 onSelect={(e) => {
                   e.preventDefault();
                   handleConnectWhatsApp();
                 }}
                 className={cn(
-                  "group flex items-center gap-2.5 px-2.5 py-2 rounded-lg",
+                  "group flex items-center gap-2.5 px-2.5 py-2 rounded-xl",
                   "text-sm text-green-600/80 hover:text-green-700",
                   "hover:bg-green-500/8 focus:bg-green-500/8",
                   "cursor-pointer transition-all duration-150"
                 )}
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-green-500/8 group-hover:bg-green-500/15 transition-colors">
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-green-500/8 group-hover:bg-green-500/15 transition-colors">
                   <MessageCircle className="h-3.5 w-3.5 text-green-500 group-hover:text-green-600 transition-colors" />
                 </span>
                 <span className="flex-1 font-medium">Connect WhatsApp</span>
@@ -227,14 +212,14 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
               <Link
                 href="/delete-account"
                 className={cn(
-                  "flex items-center gap-2.5 px-2.5 py-2 rounded-lg w-full",
+                  "flex items-center gap-2.5 px-2.5 py-2 rounded-xl w-full",
                   "text-sm text-red-500/80 hover:text-red-600",
                   "hover:bg-red-500/8",
                   "transition-all duration-150 cursor-pointer",
                   "focus:outline-none focus:bg-red-500/8"
                 )}
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-red-500/8 group-hover:bg-red-500/15 transition-colors">
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-500/8 group-hover:bg-red-500/15 transition-colors">
                   <Trash2 className="h-3.5 w-3.5 text-red-400 group-hover:text-red-500 transition-colors" />
                 </span>
                 <span className="flex-1 font-medium">Delete Account</span>
@@ -243,21 +228,21 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
             </DropdownMenuItem>
           </div>
 
-          <DropdownMenuSeparator className="my-0 bg-border/50" />
+          <DropdownMenuSeparator className="my-0 bg-[#e8dfc4] dark:bg-[#1e2a4a]" />
 
-          {/* ── Logout ── */}
+          {/* Sign Out */}
           <div className="px-2 py-2">
             <DropdownMenuItem
               onClick={deleteAllCookie}
               className={cn(
-                "group flex items-center gap-2.5 px-2.5 py-2 rounded-lg",
+                "group flex items-center gap-2.5 px-2.5 py-2 rounded-xl",
                 "text-sm font-medium text-red-500/80 hover:text-red-600",
                 "hover:bg-red-500/8 focus:bg-red-500/8",
                 "cursor-pointer transition-all duration-150"
               )}
             >
-              <span className="flex h-7 w-7 items-center justify-center rounded-md bg-red-500/8 group-hover:bg-red-500/15 transition-colors">
-                <LogOut className="h-3.5 w-3.5 text-red-400 group-hover:text-red-500 group-hover:-translate-x-0.5 group-hover:scale-95 transition-transform" />
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-500/8 group-hover:bg-red-500/15 transition-colors">
+                <LogOut className="h-3.5 w-3.5 text-red-400 group-hover:text-red-500 group-hover:-translate-x-0.5 transition-transform" />
               </span>
               <span className="flex-1">Sign Out</span>
             </DropdownMenuItem>
@@ -265,19 +250,20 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/* ── Disconnect Warning Modal ── */}
+      {/* Disconnect Warning Modal */}
       {showDisconnectWarning && createPortal(
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-          <div className="w-full max-w-xs bg-white dark:bg-slate-900 rounded-xl p-4 shadow-xl border border-slate-200 dark:border-slate-800">
-            <h2 className="text-base font-semibold text-slate-900 dark:text-white mb-1">
+          <div className="w-full max-w-xs rounded-2xl p-5 shadow-xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0a0f1e]">
+
+            <h2 className="text-base font-semibold text-slate-900 dark:text-[#e8edf8] mb-1">
               Disconnect WhatsApp?
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
+            <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6] mb-3 leading-relaxed">
               You will <span className="font-semibold text-red-500">stop receiving messages</span> from finders.
               They will only be able to reach you via call.
             </p>
 
-            <div className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 rounded-lg px-3 py-2 mb-3">
+            <div className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-900/50 rounded-xl px-3 py-2 mb-4">
               To reconnect later, you'll need to go through the WhatsApp setup again from this menu.
             </div>
 
@@ -285,13 +271,17 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
               <button
                 onClick={handleDisconnectWhatsApp}
                 disabled={isDisconnecting}
-                className="flex-1 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-lg px-3 py-2 transition-colors"
+                className="flex-1 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-xl px-3 py-2 transition-colors disabled:opacity-60"
               >
                 {isDisconnecting ? "Disconnecting..." : "Disconnect"}
               </button>
               <button
                 onClick={() => setShowDisconnectWarning(false)}
-                className="flex-1 border border-slate-200 dark:border-slate-700 text-sm font-medium rounded-lg px-3 py-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="flex-1 border border-[#e8dfc4] dark:border-[#1e2a4a] text-sm font-medium rounded-xl px-3 py-2
+                  text-[#8a7a5a] dark:text-[#89aee6]
+                  hover:border-[#d85a30]/50 dark:hover:border-[#d85a30]/60
+                  hover:text-[#d85a30] dark:hover:text-[#d85a30]
+                  bg-transparent transition-all duration-200"
               >
                 Cancel
               </button>

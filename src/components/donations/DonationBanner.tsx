@@ -16,7 +16,7 @@ export const DonationBanner: React.FC<DonationBannerProps> = ({
   return (
     <div
       onClick={onOpenModal}
-      className="sticky top-0 z-58 w-full bg-zinc-900 text-white text-xs border-b border-white/50 shadow-sm select-none cursor-pointer"
+      className="sticky top-0 z-58 w-full bg-zinc-900 text-white text-xs shadow-sm select-none cursor-pointer"
     >
       <div className="flex items-stretch">
 

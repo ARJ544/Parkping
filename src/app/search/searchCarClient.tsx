@@ -67,10 +67,10 @@ export default function SearchCar({
   const hasPhoneNumber = Boolean(phone_num || temp_phone_number);
 
   return (
-    <main className="flex flex-1 justify-center px-4 py-8 bg-slate-50 dark:bg-slate-950 transition-colors">
+    <main className="flex flex-1 justify-center px-4 py-8 transition-colors">
       <div className="layout-content-container flex w-full max-w-2xl flex-col gap-8">
         <div className="flex flex-col items-center text-center">
-          <h1 className="pb-3 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+          <h1 className="pb-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8]">
             Contact the Owner
           </h1>
 
@@ -78,10 +78,11 @@ export default function SearchCar({
             {loading && !ownerFound ? <Loader /> : null}
 
             {message && (
-              <div
-                className={`p-4 rounded-lg text-center text-sm font-medium ${ownerFound
-                  ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
-                  : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"}`}
+              <div className={`p-4 rounded-2xl text-center text-sm font-medium border
+                  ${ownerFound
+                  ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-700 dark:text-green-300"
+                  : "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-700 dark:text-red-300"
+                }`}
               >
                 {message}
               </div>
@@ -89,7 +90,6 @@ export default function SearchCar({
 
             {ownerFound && (
               <>
-
                 <MessageOwner
                   autoOpen={ownerFound}
                   onCall={handleCall}
@@ -105,25 +105,19 @@ export default function SearchCar({
                 {hasPhoneNumber && is_verified && (
                   <div className="flex flex-col items-end gap-0.5">
                     {temp_phone_number && (
-                      <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-200">
+                      <span className="text-[11px] font-semibold text-slate-700 dark:text-[#e8edf8]">
                         ...{temp_phone_number}
                       </span>
                     )}
-
                     {phone_num && !temp_phone_number && (
-                      <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-200">
+                      <span className="text-[11px] font-semibold text-slate-700 dark:text-[#e8edf8]">
                         ...{phone_num}
                       </span>
                     )}
-
                     {!temp_phone_number && (
                       <button
-                        onClick={() =>
-                          router.push(
-                            `/verify-phone-unknown-user?next=${encodeURIComponent(finderId)}`
-                          )
-                        }
-                        className="flex items-center gap-1 text-blue-600 cursor-pointer text-[9px] font-medium hover:underline"
+                        onClick={() => router.push(`/verify-phone-unknown-user?next=${encodeURIComponent(finderId)}`)}
+                        className="flex items-center gap-1 text-[#d85a30] cursor-pointer text-[9px] font-medium hover:underline"
                       >
                         <RefreshCcw size={10} />
                         change
@@ -133,9 +127,11 @@ export default function SearchCar({
                 )}
 
                 {(temp_phone_number || temp_phone_id) && (
-                  <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg py-4 px-3 text-sm flex items-center justify-between">
+                  <div className="rounded-2xl py-4 px-4 text-sm flex items-center justify-between border
+                      bg-amber-50 dark:bg-amber-900/20
+                      border-amber-200 dark:border-amber-800">
                     <p className="text-amber-700 dark:text-amber-300">
-                      Temp number active · get removed in <strong>1h</strong>
+                      Temp number active · removed in <strong>1h</strong>
                     </p>
                     <Button
                       variant="destructive"
@@ -144,18 +140,17 @@ export default function SearchCar({
                         await deleteTempPhone();
                         router.refresh();
                       }}
-                      className="h-7 px-2"
+                      className="h-7 px-3 rounded-xl bg-red-500 hover:bg-red-600 text-white border-none text-xs"
                     >
                       Remove
                     </Button>
                   </div>
                 )}
-
               </>
             )}
           </div>
         </div>
       </div>
     </main>
-  );
+    );
 }

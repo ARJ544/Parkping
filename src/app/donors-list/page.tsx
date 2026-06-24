@@ -56,82 +56,100 @@ export default async function DonorsPage({
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-slate-900 dark:bg-zinc-950 dark:text-slate-50 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 py-2">
+    <div className="min-h-screen text-slate-900 dark:text-slate-50 transition-colors duration-300">
+      <div className="max-w-4xl mx-auto px-4 py-6">
 
-        {/* Header Section */}
-        <div className="flex flex-col justify-around md:flex-row md:items-center md:justify-between border-b border-zinc-200 dark:border-zinc-500 mb-4 gap-4 pb-2">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-[#e0d5b8] dark:border-[#1e2a4a] mb-6 gap-4 pb-5">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight flex items-center gap-3">
-              <Heart className="w-8 h-8 text-red-500 fill-current animate-pulse" />
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8] flex items-center gap-3">
+              <Heart className="w-7 h-7 text-[#d85a30] fill-current animate-pulse" />
               Our Supporters
             </h1>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2">
+            <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] mt-2">
               Every contribution helps sustain our servers, power features, and keep the platform alive.
             </p>
           </div>
 
-          {/* Total Supporters Stats Badge */}
-          <div className="flex items-center gap-3 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-500/30 rounded-2xl p-4 self-start md:self-auto">
-            <div className="p-2.5 bg-emerald-500 text-white rounded-xl">
+          {/* Total Supporters Badge */}
+          <div className="flex items-center gap-3 rounded-2xl p-4 self-start md:self-auto
+            border border-[#e8dfc4] dark:border-[#1e2a4a]
+            bg-[#fef9ed] dark:bg-[#0d1b33]">
+            <div className="p-2.5 bg-[#d85a30] text-white rounded-xl">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <span className="block text-[10px] text-zinc-500 uppercase font-bold tracking-wider">Total Supporters</span>
-              <span className="text-xl font-black text-emerald-600 dark:text-emerald-400">{totalDonors}</span>
+              <span className="block text-[10px] text-[#8a7a5a] dark:text-[#4a6fa5] uppercase font-bold tracking-wider">
+                Total Supporters
+              </span>
+              <span className="text-xl font-black text-[#d85a30]">
+                {totalDonors}
+              </span>
             </div>
           </div>
         </div>
 
         {renderPagination()}
 
-        {/* Donors Content / Grid */}
+        {/* Donors Grid */}
         {donations.length === 0 ? (
-          <div className="text-center py-16 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-900">
-            <p className="text-zinc-500 dark:text-zinc-400 font-medium">No donations recorded yet. Be the first to support!</p>
+          <div className="text-center py-16 border border-dashed border-[#e8dfc4] dark:border-[#1e2a4a] rounded-2xl bg-[#fef9ed] dark:bg-[#0d1b33]">
+            <p className="text-[#8a7a5a] dark:text-[#89aee6] font-medium">
+              No donations recorded yet. Be the first to support!
+            </p>
           </div>
         ) : (
-          <>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-              {donations.map((donation) => (
-                <div
-                  key={donation.id}
-                  className="flex flex-col justify-between border border-zinc-100 dark:border-zinc-500 rounded-2xl p-5 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md hover:border-zinc-200 dark:hover:border-zinc-700 transition duration-200"
-                >
-                  <div>
-                    {/* Top row: Donor Name & Amount */}
-                    <div className="flex justify-between items-start gap-4 mb-3">
-                      <h3 className="font-bold text-base tracking-tight text-zinc-800 dark:text-zinc-100 truncate max-w-[70%]">
-                        {donation.donor_name || "Anonymous Donor"}
-                      </h3>
-                      <span className="inline-flex items-center gap-0.5 px-3 py-1 bg-amber-50 dark:bg-amber-950/40 border border-amber-500/20 rounded-full text-sm font-bold text-amber-600 dark:text-amber-400">
-                        <DollarSign className="w-3.5 h-3.5 -mr-0.5" />
-                        {donation.amount_usd}
-                      </span>
-                    </div>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {donations.map((donation) => (
+              <div
+                key={donation.id}
+                className="flex flex-col justify-between rounded-2xl p-5
+                  border border-[#e8dfc4] dark:border-[#1e2a4a]
+                  bg-[#fef9ed] dark:bg-[#0d1b33]
+                  shadow-sm hover:shadow-md hover:-translate-y-1
+                  hover:border-[#d85a30]/40 dark:hover:border-[#d85a30]/60
+                  transition-all duration-300 group relative overflow-hidden"
+              >
+                {/* Hover glow */}
+                <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                    {/* Donor Custom Message */}
-                    {donation.message && (
-                      <ExpandableMessage message={donation.message} />
-                    )}
-                  </div>
-
-                  {/* Bottom row: Time stamp */}
-                  <div className="flex items-center gap-1.5 text-[11px] font-medium text-zinc-400 dark:text-zinc-500 mt-auto border-t border-zinc-50 dark:border-zinc-800/50 pt-3">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>
-                      {new Date(donation.donated_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
+                <div className="relative z-10">
+                  {/* Top row: Name & Amount */}
+                  <div className="flex justify-between items-start gap-4 mb-3">
+                    <h3 className="font-bold text-base tracking-tight text-slate-900 dark:text-[#e8edf8] truncate max-w-[65%] group-hover:text-[#d85a30] dark:group-hover:text-[#d85a30] transition-colors duration-200">
+                      {donation.donor_name || "Anonymous Donor"}
+                    </h3>
+                    <span className="inline-flex items-center gap-0.5 px-3 py-1
+                      bg-orange-50 dark:bg-[#d85a30]/10
+                      border border-[#d85a30]/20 dark:border-[#d85a30]/30
+                      rounded-full text-sm font-bold text-[#d85a30]">
+                      <DollarSign className="w-3.5 h-3.5 -mr-0.5" />
+                      {donation.amount_usd}
                     </span>
                   </div>
+
+                  {/* Message */}
+                  {donation.message && (
+                    <ExpandableMessage message={donation.message} />
+                  )}
                 </div>
-              ))}
-            </div>
-          </>
+
+                {/* Timestamp */}
+                <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#8a7a5a] dark:text-[#4a6fa5] mt-auto border-t border-[#e8dfc4] dark:border-[#1e2a4a] pt-3 relative z-10">
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>
+                    {new Date(donation.donated_at).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         )}
+
       </div>
 
       {renderPagination()}

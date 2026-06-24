@@ -74,8 +74,8 @@ export default function SignupClient() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-slate-50 dark:bg-slate-950">
-      <div className="w-full max-w-md bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-[#fcf2ce] dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
 
         <div className="flex flex-col gap-2 mb-8 text-center">
           <h1 className="text-slate-900 dark:text-white text-3xl font-black tracking-tight">

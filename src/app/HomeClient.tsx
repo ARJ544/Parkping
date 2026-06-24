@@ -53,19 +53,19 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
   };
 
   return (
-    <div className="bg-white dark:bg-[#080c10] text-slate-900 dark:text-slate-50">
+    <div className="text-slate-900 dark:text-slate-50">
       <main className="max-w-5xl mx-auto px-6">
 
+        {/* HERO */}
         <section className="py-8 grid gap-4 items-center max-w-6xl mx-auto md:grid-cols-2">
 
           <div className="hidden md:flex flex-col gap-6 px-4 max-w-xl">
-            <h1 className={`${unbounded.className} text-5xl md:text-5xl font-extrabold leading-tight tracking-tight`}>
+            <h1 className={`${unbounded.className} text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-[#e8edf8]`}>
               Stay Reachable.<br />
-              Without -<br />
-              <span className="text-blue-500">Showing your number.</span>
+              Without —<br />
+              <span className="text-[#d85a30]">Showing your number.</span>
             </h1>
-
-            <p className="text-base italic text-slate-500 dark:text-slate-400 max-w-sm">
+            <p className="text-base italic text-[#8a7a5a] dark:text-[#89aee6] max-w-sm">
               Multipurpose QR codes for anything you own. Stay reachable — Get Contacted anonymously.
             </p>
           </div>
@@ -76,29 +76,28 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               alt="QR preview"
               className="w-full h-auto object-contain rounded-2xl"
             />
-
-            <p className="md:hidden text-base italic text-slate-500 dark:text-slate-400 max-w-sm">
+            <p className="md:hidden text-base italic text-[#8a7a5a] dark:text-[#89aee6] max-w-sm">
               Multipurpose QR codes for anything you own. Stay reachable — Get Contacted anonymously.
             </p>
           </div>
 
-          {/* BUTTON */}
+          {/* CTA Button */}
           <div className="md:col-span-2 flex justify-start">
             <Link href="/qr">
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 px-7 rounded-3xl flex items-center gap-2">
+              <Button className="bg-[#d85a30] hover:bg-[#c04e28] text-white font-bold h-11 px-7 rounded-full flex items-center gap-2 border-none shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                 Generate your QR Code
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
           </div>
 
-          {/* Additional Options + Panel */}
+          {/* Additional Options */}
           <div className="md:col-span-2 flex flex-col gap-4">
             <div className="flex justify-start">
               <Button
                 onClick={() => setAdditionalOpen(!additionalOpen)}
                 variant="ghost"
-                className="w-40 h-9 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 bg-transparent hover:bg-transparent border border-gray-200 dark:border-gray-700 rounded-3xl flex items-center justify-center gap-1 text-xs font-medium"
+                className="w-40 h-9 text-[#8a7a5a] hover:text-[#5a4a2a] dark:text-[#89aee6] dark:hover:text-[#e8edf8] bg-transparent hover:bg-transparent border border-[#e0d5b8] dark:border-[#1e2a4a] hover:border-[#d85a30]/50 dark:hover:border-[#d85a30] rounded-full flex items-center justify-center gap-1 text-xs font-medium transition-colors"
               >
                 Additional Options {additionalOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               </Button>
@@ -106,78 +105,131 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
 
             {additionalOpen && (
               <div className="flex flex-col gap-7">
-                {/* Secondary Actions */}
                 <div className="flex flex-col gap-3">
-                  <Link href="/scan" className="flex items-center justify-between p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 hover:border-blue-300 dark:hover:border-blue-700 transition-colors">
+                  <Link
+                    href="/scan"
+                    className="flex items-center justify-between p-5 rounded-2xl border
+                      border-[#e8dfc4] hover:border-[#d85a30]/50
+                      dark:border-[#1e2a4a] dark:hover:border-[#d85a30]/60
+                      bg-[#fef9ed] dark:bg-[#0d1b33]
+                      shadow-sm hover:shadow-md hover:-translate-y-0.5
+                      transition-all duration-300 group"
+                  >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-500 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-[#d85a30]/10 text-[#d85a30] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#d85a30] group-hover:text-white transition-all duration-300">
                         <ScanQrCodeIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="font-bold text-sm">Scan {COMPANY_NAME} QR code</p>
-                        <p className="text-xs text-slate-400">Look up an item by scanning its {COMPANY_NAME} QR code</p>
+                        <p className="font-bold text-sm text-slate-900 dark:text-[#e8edf8]">Scan {COMPANY_NAME} QR code</p>
+                        <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6]">Look up an item by scanning its {COMPANY_NAME} QR code</p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-slate-300 dark:text-slate-600" />
+                    <ArrowRight className="w-4 h-4 text-[#c8b898] dark:text-[#1e2a4a]" />
                   </Link>
-
                 </div>
-
               </div>
             )}
           </div>
 
         </section>
 
-        <hr className="border-slate-100 dark:border-slate-800" />
+        <hr className="border-[#e0d5b8] dark:border-[#1e2a4a]" />
 
         {/* USE CASES */}
         <section className="py-8">
-          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2`}>Typical Use Cases.</h2>
-          <p className="text-sm text-slate-400 mb-8">Not just vehicles — use it on anything.</p>
+          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2 text-slate-900 dark:text-[#e8edf8]`}>
+            Typical Use Cases.
+          </h2>
+          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] mb-8">
+            Not just vehicles — use it on anything.
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {useCases.map(({ icon: Icon, label, desc }) => (
-              <div key={label} className="flex flex-col gap-2 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-blue-300 dark:hover:border-blue-700 transition-colors bg-slate-50 dark:bg-slate-800/40">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-500 flex items-center justify-center">
+              <div
+                key={label}
+                className="flex flex-col gap-2 p-5 rounded-2xl border
+                  border-[#e8dfc4] hover:border-[#d85a30]/40
+                  dark:border-[#1e2a4a] dark:hover:border-[#d85a30]/60
+                  bg-[#fef9ed] dark:bg-[#0d1b33]
+                  shadow-sm hover:shadow-md hover:-translate-y-1
+                  transition-all duration-300 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center
+                  bg-orange-50 text-[#d85a30]
+                  dark:bg-[#d85a30]/10 dark:text-[#d85a30]
+                  group-hover:scale-110 group-hover:bg-[#d85a30] group-hover:text-white
+                  dark:group-hover:bg-[#d85a30] dark:group-hover:text-white
+                  transition-all duration-300 ease-out shadow-sm">
                   <Icon className="w-4 h-4" />
                 </div>
-                <p className="font-bold text-sm">{label}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{desc}</p>
+
+                <p className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] group-hover:text-[#d85a30] dark:group-hover:text-[#d85a30] transition-colors duration-200 relative z-10">
+                  {label}
+                </p>
+                <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed relative z-10">
+                  {desc}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        <hr className="border-slate-100 dark:border-slate-800" />
+        <hr className="border-[#e0d5b8] dark:border-[#1e2a4a]" />
 
         {/* HOW IT WORKS */}
         <section className="py-10">
-          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2`}>How it works.</h2>
-          <p className="text-sm text-slate-400 mb-8">Up and running in under 30 seconds.</p>
+          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2 text-slate-900 dark:text-[#e8edf8]`}>
+            How it works.
+          </h2>
+          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] mb-8">
+            Up and running in under 30 seconds.
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {steps.map(({ n, title, body }) => (
-              <div key={n} className="flex flex-col gap-2 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
-                <div className="w-7 h-7 rounded-lg bg-blue-500 text-white flex items-center justify-center font-bold text-xs">
+              <div
+                key={n}
+                className="flex flex-col gap-2 p-5 rounded-2xl border
+                  border-[#e8dfc4] hover:border-[#d85a30]/40
+                  dark:border-[#1e2a4a] dark:hover:border-[#d85a30]/60
+                  bg-[#fef9ed] dark:bg-[#0d1b33]
+                  shadow-sm hover:shadow-md hover:-translate-y-1
+                  transition-all duration-300 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs
+                  bg-[#d85a30] text-white
+                  group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm relative z-10">
                   {n}
                 </div>
-                <p className="font-bold text-sm">{title}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{body}</p>
+
+                <p className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] group-hover:text-[#d85a30] dark:group-hover:text-[#d85a30] transition-colors duration-200 relative z-10">
+                  {title}
+                </p>
+                <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed relative z-10">
+                  {body}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        <hr className="border-slate-100 dark:border-slate-800" />
+        <hr className="border-[#e0d5b8] dark:border-[#1e2a4a]" />
 
         {/* CTA */}
-        <section className="py-10 flex flex-col gap-4">
-          <h2 className={`${unbounded.className} text-3xl md:text-4xl font-extrabold tracking-tight`}>
+        <section className="py-10 flex flex-col gap-4 relative overflow-hidden">
+
+          <h2 className={`${unbounded.className} text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8] relative z-10`}>
             Ready? It takes 30 seconds.
           </h2>
-          <p className="text-sm text-slate-400">Free. No credit card. No personal data shared.</p>
-          <div>
+          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] relative z-10">
+            Free. No credit card. No personal data shared.
+          </p>
+          <div className="relative z-10">
             <Link href="/signin">
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white font-bold h-11 px-7 rounded-3xl flex items-center gap-2">
+              <Button className="bg-[#d85a30] hover:bg-[#c04e28] text-white font-bold h-11 px-7 rounded-full flex items-center gap-2 border-none shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                 Get Started <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -186,9 +238,10 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
 
       </main>
 
+      {/* WHATSAPP MODAL */}
       {showConnectModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-          <div className="w-full max-w-sm bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-xl border border-slate-200/70 dark:border-slate-800">
+          <div className="w-full max-w-sm bg-[#fef9ed] dark:bg-[#0a0f1e] rounded-2xl p-4 shadow-xl border border-[#e8dfc4] dark:border-[#1e2a4a]">
 
             {/* Header */}
             <div className="flex items-center gap-2.5 mb-3">
@@ -196,7 +249,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
                 💬
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-white leading-tight">
+                <h2 className="text-sm font-semibold text-slate-900 dark:text-[#e8edf8] leading-tight">
                   Connect WhatsApp
                 </h2>
                 <p className="text-[12px] text-pink-500 dark:text-pink-400 underline">
@@ -208,23 +261,22 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
             {/* Highlight Box */}
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-xl px-3 py-2 mb-3">
               <p className="text-[11px] text-green-700 dark:text-green-300 leading-relaxed">
-                Messages will be delivered on your WhatsApp until <span className="font-semibold">early May(TBD)</span>. After that, only connected users will receive messages.{" "}
+                Messages will be delivered on your WhatsApp until <span className="font-semibold">early May (TBD)</span>. After that, only connected users will receive messages.
                 <br />
                 <span className="block mb-0.5 mt-0.5" />
-                <span className="opacity-77">NOTE: You can still connect later, but may miss messages between that time. </span>
+                <span className="opacity-75">NOTE: You can still connect later, but may miss messages between that time.</span>
               </p>
-
             </div>
 
             {/* Key Points */}
-            <div className="space-y-1.5 mb-3 text-[11px] text-slate-600 dark:text-slate-400">
+            <div className="space-y-1.5 mb-3 text-[11px] text-[#8a7a5a] dark:text-[#89aee6]">
               <div className="flex items-center gap-2">
                 <span className="text-green-500">✔</span>
-                <p>Use the <span className="font-medium text-slate-800 dark:text-slate-200">same number</span> you signed in with.</p>
+                <p>Use the <span className="font-medium text-slate-900 dark:text-[#e8edf8]">same number</span> you signed in with.</p>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-green-500">✔</span>
-                <p>Connect or disconnect via the <span className="font-medium text-slate-800 dark:text-slate-200">profile menu</span> (top-right)</p>
+                <p>Connect or disconnect via the <span className="font-medium text-slate-900 dark:text-[#e8edf8]">profile menu</span> (top-right)</p>
               </div>
             </div>
 
@@ -235,13 +287,13 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
                   handleConnectWhatsApp();
                   setShowConnectModal(false);
                 }}
-                className="w-full bg-green-500 hover:bg-green-600 text-white text-xs font-medium h-9 rounded-xl shadow-sm"
+                className="w-full bg-green-500 hover:bg-green-600 text-white text-xs font-medium h-9 rounded-xl shadow-sm hover:-translate-y-0.5 transition-all duration-200"
               >
                 Connect WhatsApp
               </Button>
               <button
                 onClick={() => setShowConnectModal(false)}
-                className="text-[11px] cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition py-0.5"
+                className="text-[11px] cursor-pointer text-[#8a7a5a] hover:text-[#5a4a2a] dark:text-[#89aee6] dark:hover:text-[#e8edf8] transition py-0.5"
               >
                 Maybe later
               </button>

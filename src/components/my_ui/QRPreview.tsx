@@ -23,12 +23,14 @@ export default function QRPreview({
 }: QRPreviewProps) {
   return (
     <div className="flex flex-col gap-4 lg:sticky lg:top-6">
-      <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
+      <p className="text-xs font-bold uppercase tracking-widest text-[#8a7a5a] dark:text-[#89aee6]">
         Preview
       </p>
 
       <div
-        className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg select-none w-full"
+        className="relative rounded-2xl overflow-hidden border
+          border-[#e8dfc4] dark:border-[#1e2a4a]
+          shadow-sm select-none w-full"
         style={{ aspectRatio: `${canvasWidth} / ${canvasHeight}` }}
       >
         <svg
@@ -36,14 +38,25 @@ export default function QRPreview({
           viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
         >
-          <image href={templateSrc} width={canvasWidth} height={canvasHeight} preserveAspectRatio="xMidYMid slice" />
+          <image
+            href={templateSrc}
+            width={canvasWidth}
+            height={canvasHeight}
+            preserveAspectRatio="xMidYMid slice"
+          />
           <g transform={`translate(${qrPosition.x}, ${qrPosition.y})`}>
-            <QRCodeSVG value={qrValue} size={qrSize} level="M" bgColor="#ffffff" fgColor="#000000" />
+            <QRCodeSVG
+              value={qrValue}
+              size={qrSize}
+              level="M"
+              bgColor="#ffffff"
+              fgColor="#000000"
+            />
           </g>
         </svg>
       </div>
 
-      <p className="text-xs text-slate-400">
+      <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6]">
         PDF output will be print quality.
       </p>
     </div>

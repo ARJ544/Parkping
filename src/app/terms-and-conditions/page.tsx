@@ -7,7 +7,7 @@ const syne = Syne({ subsets: ["latin"], weight: ["700", "800"] });
 
 export default function TermsAndConditions() {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#080c10] text-slate-900 dark:text-slate-50">
+    <div className="min-h-screen text-slate-900 dark:text-slate-50">
       <div className="max-w-3xl mx-auto px-8 py-16 flex flex-col gap-10">
 
         <div className="flex flex-col gap-2">

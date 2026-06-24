@@ -33,33 +33,37 @@ export default function DeleteAccountClient() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 px-4 py-10">
-      <div className="mx-auto max-w-2xl">
+    <main className="min-h-screen px-4 py-10">
+      <div className="mx-auto max-w-2xl flex flex-col gap-6">
+
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-black tracking-tight text-slate-900 dark:text-slate-100">
+        <div>
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8]">
             Delete Account
           </h1>
-          <p className="mt-2 text-slate-600 dark:text-slate-400">
-            Permanently delete your account and all associated data
+          <p className="mt-2 text-sm text-[#8a7a5a] dark:text-[#89aee6]">
+            Permanently delete your account and all associated data.
           </p>
         </div>
 
-        {/* Delete Account Section */}
-        <div className="rounded-xl border-2 border-red-300 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <AlertTriangle className="text-red-600 dark:text-red-500" size={24} />
-            <h2 className="text-2xl font-bold text-red-700 dark:text-red-500">
+        {/* Danger Card */}
+        <div className="rounded-2xl border-2 border-red-200 dark:border-red-900/60 bg-red-50/80 dark:bg-red-950/20 p-8 flex flex-col gap-6">
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 shrink-0">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+            <h2 className="text-xl font-bold text-red-700 dark:text-red-400">
               Delete Your Account
             </h2>
           </div>
 
-          <div className="space-y-4 mb-6">
+          <div className="flex flex-col gap-3">
             <p className="text-sm text-red-700 dark:text-red-400 leading-relaxed">
-              This action is <strong>permanent and irreversible</strong>. 
+              This action is <strong>permanent and irreversible</strong>.
               Once deleted, your account and all associated data will be removed from our system.
             </p>
-            <ul className="text-sm text-red-700 dark:text-red-400 list-disc ml-5 space-y-2">
+            <ul className="text-sm text-red-700 dark:text-red-400 list-disc ml-5 space-y-1.5">
               <li>Your account will be completely removed</li>
               <li>All your data will be permanently deleted</li>
               <li>Your Finder ID will no longer be accessible</li>
@@ -69,33 +73,36 @@ export default function DeleteAccountClient() {
 
           <Dialog open={openDialog} onOpenChange={setOpenDialog}>
             <DialogTrigger asChild>
-              <Button variant="destructive" className="w-full">
-                <Trash2 className="mr-2" size={18} />
+              <Button
+                variant="destructive"
+                className="w-full h-11 rounded-full font-bold flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <Trash2 className="w-4 h-4" />
                 Delete My Account
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md rounded-2xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0a0f1e]">
               <DialogHeader>
-                <DialogTitle className="flex items-center gap-2 text-red-600 dark:text-red-500">
+                <DialogTitle className="flex items-center gap-2 text-red-600 dark:text-red-400">
                   <AlertTriangle className="h-5 w-5" />
                   Confirm Account Deletion
                 </DialogTitle>
-                <DialogDescription>
+                <DialogDescription className="text-[#8a7a5a] dark:text-[#89aee6]">
                   This action cannot be undone.
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="space-y-4">
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Type <span className="font-semibold">"delete"</span> to confirm account deletion.
+              <div className="flex flex-col gap-4">
+                <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6]">
+                  Type <span className="font-semibold text-slate-900 dark:text-[#e8edf8]">"delete"</span> to confirm account deletion.
                 </p>
 
                 <Input
                   value={confirmText}
                   onChange={(e) => setConfirmText(e.target.value)}
                   placeholder='Type "delete"'
-                  className="font-semibold"
+                  className="font-semibold rounded-xl border-[#e8dfc4] dark:border-[#1e2a4a] bg-white dark:bg-[#0d1b33] text-slate-900 dark:text-[#e8edf8] placeholder:text-[#8a7a5a] dark:placeholder:text-[#4a6fa5]"
                 />
 
                 {message && (
@@ -113,6 +120,7 @@ export default function DeleteAccountClient() {
                     setConfirmText("");
                   }}
                   disabled={deleting}
+                  className="rounded-full border-[#e8dfc4] dark:border-[#1e2a4a] text-[#8a7a5a] dark:text-[#89aee6] hover:border-[#d85a30]/50 dark:hover:border-[#d85a30]/60 hover:text-[#d85a30] dark:hover:text-[#d85a30] bg-transparent transition-all duration-200"
                 >
                   Cancel
                 </Button>
@@ -120,6 +128,7 @@ export default function DeleteAccountClient() {
                   variant="destructive"
                   disabled={confirmText !== "delete" || deleting}
                   onClick={handleDelete}
+                  className="rounded-full bg-red-600 hover:bg-red-700 text-white font-bold transition-all duration-200 disabled:opacity-50"
                 >
                   {deleting ? "Deleting..." : "Delete Account"}
                 </Button>
@@ -129,11 +138,13 @@ export default function DeleteAccountClient() {
         </div>
 
         {/* Info Box */}
-        <div className="mt-8 rounded-lg bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 p-4">
-          <p className="text-sm text-blue-900 dark:text-blue-300">
-            <strong>Note:</strong> If you're having issues with your account, please contact our support team before deleting.
+        <div className="rounded-2xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0d1b33] px-5 py-4">
+          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed">
+            <span className="font-semibold text-slate-900 dark:text-[#e8edf8]">Note: </span>
+            If you're having issues with your account, please contact our support team before deleting.
           </p>
         </div>
+
       </div>
     </main>
   );
