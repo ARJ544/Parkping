@@ -23,13 +23,13 @@ export default function QRPreview({
 }: QRPreviewProps) {
   return (
     <div className="flex flex-col gap-4 lg:sticky lg:top-6">
-      <p className="text-xs font-bold uppercase tracking-widest text-[#8a7a5a] dark:text-[#89aee6]">
+      <p className="text-xs font-bold uppercase tracking-widest text-brand-muted">
         Preview
       </p>
 
       <div
         className="relative rounded-2xl overflow-hidden border
-          border-[#e8dfc4] dark:border-[#1e2a4a]
+          border-brand-border
           shadow-sm select-none w-full"
         style={{ aspectRatio: `${canvasWidth} / ${canvasHeight}` }}
       >
@@ -56,7 +56,7 @@ export default function QRPreview({
         </svg>
       </div>
 
-      <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6]">
+      <p className="text-xs text-brand-muted">
         PDF output will be print quality.
       </p>
     </div>

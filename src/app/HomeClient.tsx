@@ -55,19 +55,19 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
   };
 
   return (
-    <div className="text-slate-900 dark:text-slate-50">
+    <div className="text-brand-heading dark:text-slate-50">
       <main className="max-w-5xl mx-auto px-6">
 
         {/* HERO */}
         <section className="py-8 grid gap-4 items-center max-w-6xl mx-auto md:grid-cols-2">
 
           <div className="hidden md:flex flex-col gap-6 px-4 max-w-xl">
-            <h1 className={`${unbounded.className} text-5xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-[#e8edf8]`}>
+            <h1 className={`${unbounded.className} text-5xl font-extrabold leading-tight tracking-tight text-brand-heading dark:text-brand-heading`}>
               Stay Reachable.<br />
               Without —<br />
-              <span className="text-[#d85a30]">Showing your number.</span>
+              <span className="text-coral">Showing your number.</span>
             </h1>
-            <p className="text-base italic text-[#8a7a5a] dark:text-[#89aee6] max-w-sm">
+            <p className="text-base italic text-brand-muted max-w-sm">
               Multipurpose QR codes for anything you own. Stay reachable — Get Contacted anonymously.
             </p>
           </div>
@@ -77,9 +77,11 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               src="/bg.jpg"
               alt="QR preview"
               className="w-full h-auto object-contain rounded-2xl"
-              priority
+              width={250}
+              height={170}
+              priority={true}
             />
-            <p className="md:hidden text-base italic text-[#8a7a5a] dark:text-[#89aee6] max-w-sm">
+            <p className="md:hidden text-base italic text-brand-muted max-w-sm">
               Multipurpose QR codes for anything you own. Stay reachable — Get Contacted anonymously.
             </p>
           </div>
@@ -87,7 +89,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
           {/* CTA Button */}
           <div className="md:col-span-2 flex justify-start">
             <Link href="/qr">
-              <Button className="bg-[#d85a30] hover:bg-[#c04e28] text-white font-bold h-11 px-7 rounded-full flex items-center gap-2 border-none shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <Button className="bg-coral hover:bg-coral-hover text-white font-bold h-11 px-7 rounded-full flex items-center gap-2 border-none shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                 Generate your QR Code
                 <ArrowRight className="h-4 w-4" />
               </Button>
@@ -100,7 +102,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               <Button
                 onClick={() => setAdditionalOpen(!additionalOpen)}
                 variant="ghost"
-                className="w-40 h-9 text-[#8a7a5a] hover:text-[#5a4a2a] dark:text-[#89aee6] dark:hover:text-[#e8edf8] bg-transparent hover:bg-transparent border border-[#e0d5b8] dark:border-[#1e2a4a] hover:border-[#d85a30]/50 dark:hover:border-[#d85a30] rounded-full flex items-center justify-center gap-1 text-xs font-medium transition-colors"
+                className="w-40 h-9 text-brand-muted hover:text-[#5a4a2a] dark:text-brand-muted dark:hover:text-brand-heading bg-transparent hover:bg-transparent border border-brand-hr hover:border-coral/50 dark:hover:border-coral rounded-full flex items-center justify-center gap-1 text-xs font-medium transition-colors"
               >
                 Additional Options {additionalOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               </Button>
@@ -112,22 +114,21 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
                   <Link
                     href="/scan"
                     className="flex items-center justify-between p-5 rounded-2xl border
-                      border-[#e8dfc4] hover:border-[#d85a30]/50
-                      dark:border-[#1e2a4a] dark:hover:border-[#d85a30]/60
-                      bg-[#fef9ed] dark:bg-[#0d1b33]
+                      border-brand-border hover:border-coral/50
+                      dark:border-brand-border dark:hover:border-coral/60
+                      bg-brand-card
                       shadow-sm hover:shadow-md hover:-translate-y-0.5
                       transition-all duration-300 group"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-[#d85a30]/10 text-[#d85a30] flex items-center justify-center group-hover:scale-110 group-hover:bg-[#d85a30] group-hover:text-white transition-all duration-300">
+                      <div className="w-10 h-10 rounded-xl bg-orange-50 dark:bg-coral/10 text-coral flex items-center justify-center group-hover:scale-110 group-hover:bg-coral group-hover:text-white transition-all duration-300">
                         <ScanQrCodeIcon className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="font-bold text-sm text-slate-900 dark:text-[#e8edf8]">Scan {COMPANY_NAME} QR code</p>
-                        <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6]">Look up an item by scanning its {COMPANY_NAME} QR code</p>
+                        <p className="font-bold text-sm text-brand-heading dark:text-brand-heading">Scan {COMPANY_NAME} QR code</p>
+                        <p className="text-xs text-brand-muted">Look up an item by scanning its {COMPANY_NAME} QR code</p>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-[#c8b898] dark:text-[#1e2a4a]" />
                   </Link>
                 </div>
               </div>
@@ -136,14 +137,14 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
 
         </section>
 
-        <hr className="border-[#e0d5b8] dark:border-[#1e2a4a]" />
+        <hr className="border-brand-hr" />
 
         {/* USE CASES */}
         <section className="py-8">
-          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2 text-slate-900 dark:text-[#e8edf8]`}>
+          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2 text-brand-heading dark:text-brand-heading`}>
             Typical Use Cases.
           </h2>
-          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] mb-8">
+          <p className="text-sm text-brand-muted mb-8">
             Not just vehicles — use it on anything.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -151,27 +152,27 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               <div
                 key={label}
                 className="flex flex-col gap-2 p-5 rounded-2xl border
-                  border-[#e8dfc4] hover:border-[#d85a30]/40
-                  dark:border-[#1e2a4a] dark:hover:border-[#d85a30]/60
-                  bg-[#fef9ed] dark:bg-[#0d1b33]
+                  border-brand-border hover:border-coral/40
+                  dark:border-brand-border dark:hover:border-coral/60
+                  bg-brand-card
                   shadow-sm hover:shadow-md hover:-translate-y-1
                   transition-all duration-300 group relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-coral/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 <div className="w-9 h-9 rounded-xl flex items-center justify-center
-                  bg-orange-50 text-[#d85a30]
-                  dark:bg-[#d85a30]/10 dark:text-[#d85a30]
-                  group-hover:scale-110 group-hover:bg-[#d85a30] group-hover:text-white
-                  dark:group-hover:bg-[#d85a30] dark:group-hover:text-white
+                  bg-orange-50 text-coral
+                  dark:bg-coral/10 dark:text-coral
+                  group-hover:scale-110 group-hover:bg-coral group-hover:text-white
+                  dark:group-hover:bg-coral dark:group-hover:text-white
                   transition-all duration-300 ease-out shadow-sm">
                   <Icon className="w-4 h-4" />
                 </div>
 
-                <p className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] group-hover:text-[#d85a30] dark:group-hover:text-[#d85a30] transition-colors duration-200 relative z-10">
+                <p className="font-bold text-sm text-brand-heading dark:text-brand-heading group-hover:text-coral dark:group-hover:text-coral transition-colors duration-200 relative z-10">
                   {label}
                 </p>
-                <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed relative z-10">
+                <p className="text-xs text-brand-muted leading-relaxed relative z-10">
                   {desc}
                 </p>
               </div>
@@ -179,14 +180,14 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
           </div>
         </section>
 
-        <hr className="border-[#e0d5b8] dark:border-[#1e2a4a]" />
+        <hr className="border-brand-hr" />
 
         {/* HOW IT WORKS */}
         <section className="py-10">
-          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2 text-slate-900 dark:text-[#e8edf8]`}>
+          <h2 className={`${unbounded.className} text-2xl font-extrabold tracking-tight mb-2 text-brand-heading dark:text-brand-heading`}>
             How it works.
           </h2>
-          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] mb-8">
+          <p className="text-sm text-brand-muted mb-8">
             Up and running in under 30 seconds.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -194,24 +195,24 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               <div
                 key={n}
                 className="flex flex-col gap-2 p-5 rounded-2xl border
-                  border-[#e8dfc4] hover:border-[#d85a30]/40
-                  dark:border-[#1e2a4a] dark:hover:border-[#d85a30]/60
-                  bg-[#fef9ed] dark:bg-[#0d1b33]
+                  border-brand-border hover:border-coral/40
+                  dark:border-brand-border dark:hover:border-coral/60
+                  bg-brand-card
                   shadow-sm hover:shadow-md hover:-translate-y-1
                   transition-all duration-300 group relative overflow-hidden"
               >
-                <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-coral/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs
-                  bg-[#d85a30] text-white
+                  bg-coral text-white
                   group-hover:scale-110 transition-transform duration-300 ease-out shadow-sm relative z-10">
                   {n}
                 </div>
 
-                <p className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] group-hover:text-[#d85a30] dark:group-hover:text-[#d85a30] transition-colors duration-200 relative z-10">
+                <p className="font-bold text-sm text-brand-heading dark:text-brand-heading group-hover:text-coral dark:group-hover:text-coral transition-colors duration-200 relative z-10">
                   {title}
                 </p>
-                <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed relative z-10">
+                <p className="text-xs text-brand-muted leading-relaxed relative z-10">
                   {body}
                 </p>
               </div>
@@ -219,20 +220,20 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
           </div>
         </section>
 
-        <hr className="border-[#e0d5b8] dark:border-[#1e2a4a]" />
+        <hr className="border-brand-hr" />
 
         {/* CTA */}
         <section className="py-10 flex flex-col gap-4 relative overflow-hidden">
 
-          <h2 className={`${unbounded.className} text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8] relative z-10`}>
+          <h2 className={`${unbounded.className} text-3xl md:text-4xl font-extrabold tracking-tight text-brand-heading dark:text-brand-heading relative z-10`}>
             Ready? It takes 30 seconds.
           </h2>
-          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] relative z-10">
+          <p className="text-sm text-brand-muted relative z-10">
             Free. No credit card. No personal data shared.
           </p>
           <div className="relative z-10">
             <Link href="/signin">
-              <Button className="bg-[#d85a30] hover:bg-[#c04e28] text-white font-bold h-11 px-7 rounded-full flex items-center gap-2 border-none shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <Button className="bg-coral hover:bg-coral-hover text-white font-bold h-11 px-7 rounded-full flex items-center gap-2 border-none shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                 Get Started <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -244,7 +245,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
       {/* WHATSAPP MODAL */}
       {showConnectModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-          <div className="w-full max-w-sm bg-[#fef9ed] dark:bg-[#0a0f1e] rounded-2xl p-4 shadow-xl border border-[#e8dfc4] dark:border-[#1e2a4a]">
+          <div className="w-full max-w-sm bg-brand-card dark:bg-brand-navy rounded-2xl p-4 shadow-xl border border-brand-border">
 
             {/* Header */}
             <div className="flex items-center gap-2.5 mb-3">
@@ -252,7 +253,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
                 💬
               </div>
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-[#e8edf8] leading-tight">
+                <h2 className="text-sm font-semibold text-brand-heading dark:text-brand-heading leading-tight">
                   Connect WhatsApp
                 </h2>
                 <p className="text-[12px] text-pink-500 dark:text-pink-400 underline">
@@ -272,14 +273,14 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
             </div>
 
             {/* Key Points */}
-            <div className="space-y-1.5 mb-3 text-[11px] text-[#8a7a5a] dark:text-[#89aee6]">
+            <div className="space-y-1.5 mb-3 text-[11px] text-brand-muted">
               <div className="flex items-center gap-2">
                 <span className="text-green-500">✔</span>
-                <p>Use the <span className="font-medium text-slate-900 dark:text-[#e8edf8]">same number</span> you signed in with.</p>
+                <p>Use the <span className="font-medium text-brand-heading dark:text-brand-heading">same number</span> you signed in with.</p>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-green-500">✔</span>
-                <p>Connect or disconnect via the <span className="font-medium text-slate-900 dark:text-[#e8edf8]">profile menu</span> (top-right)</p>
+                <p>Connect or disconnect via the <span className="font-medium text-brand-heading dark:text-brand-heading">profile menu</span> (top-right)</p>
               </div>
             </div>
 
@@ -296,7 +297,7 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               </Button>
               <button
                 onClick={() => setShowConnectModal(false)}
-                className="text-[11px] cursor-pointer text-[#8a7a5a] hover:text-[#5a4a2a] dark:text-[#89aee6] dark:hover:text-[#e8edf8] transition py-0.5"
+                className="text-[11px] cursor-pointer text-brand-muted hover:text-[#5a4a2a] dark:text-brand-muted dark:hover:text-brand-heading transition py-0.5"
               >
                 Maybe later
               </button>

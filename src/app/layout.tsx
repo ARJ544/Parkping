@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${chiron.className} bg-[#fdf8e2] dark:bg-[#080c10] selection:bg-teal-300 selection:text-teal-950`}
+        className={`${chiron.className} bg-brand-page selection:bg-teal-300 selection:text-teal-950`}
       >
         <SerwistProvider swUrl="/serwist/sw.js">
           <ThemeProvider
@@ -165,7 +165,7 @@ export default function RootLayout({
                       </nav>
                     </div>
                   </div>
-                  <div className="pt-8 border-t border-[#cfdde7] dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 font-medium">
+                  <div className="pt-8 border-t border-brand-border dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 font-medium">
                     <p>
                       © {currentYear} {COMPANY_NAME}. All rights reserved.
                     </p>

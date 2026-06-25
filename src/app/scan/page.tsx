@@ -71,14 +71,14 @@ export default function ScanPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-md text-center rounded-2xl p-8 bg-[#fcf2ce] border border-[#fee075] shadow-xl dark:bg-gray-900 dark:border-gray-800">
+      <div className="w-full max-w-md text-center rounded-2xl p-8 bg-brand-card border border-brand-reply-border shadow-xl dark:bg-gray-900 dark:border-gray-800">
         <h1 className="text-2xl font-bold mb-2 dark:text-white">
           {COMPANY_NAME} QR Scanner
         </h1>
         <p className="text-sm mb-6 text-gray-600 dark:text-gray-400">
           Scan {COMPANY_NAME} QR code using your camera
         </p>
-        <div className="relative rounded-xl border border-[#fee075] bg-[#fcf2ce] dark:border-gray-800 dark:bg-gray-950">
+        <div className="relative rounded-xl border border-brand-reply-border bg-brand-card dark:border-gray-800 dark:bg-gray-950">
           {!startScanner ? (
             <button
               onClick={() => setStartScanner(true)}
@@ -103,7 +103,7 @@ export default function ScanPage() {
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 p-4">
-          <div className="w-full max-w-sm rounded-xl bg-[#fcf2ce] p-6 shadow-lg dark:bg-gray-900">
+          <div className="w-full max-w-sm rounded-xl bg-brand-card p-6 shadow-lg dark:bg-gray-900">
             <h2 className="text-lg font-semibold mb-3 dark:text-white">
               Scan Result
             </h2>

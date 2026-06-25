@@ -19,7 +19,7 @@ export default async function GenerateQR() {
 
   if (!finder_id) {
     return (
-      <div className="min-h-screen bg-white dark:bg-[#080c10] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-white dark:bg-brand-page flex items-center justify-center px-6">
         <div className="text-center space-y-3">
           <p className="text-lg font-semibold text-slate-800 dark:text-slate-100">
             Failed to fetch details

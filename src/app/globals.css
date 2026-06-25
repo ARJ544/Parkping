@@ -44,8 +44,24 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* ── Brand semantic tokens → Tailwind utilities ── */
+  --color-coral: var(--brand-coral);
+  --color-coral-hover: var(--brand-coral-hover);
+  --color-brand-card: var(--brand-card);
+  --color-brand-border: var(--brand-border);
+  --color-brand-hr: var(--brand-hr);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-heading: var(--brand-heading);
+  --color-brand-subtle: var(--brand-subtle);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-page: var(--brand-page);
+  --color-brand-wa: var(--brand-wa);
+  --color-brand-warm-text: var(--brand-warm-text);
+  --color-brand-reply-border: var(--brand-reply-border);
 }
 
+/* ── shadcn/ui required tokens ── */
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -115,14 +131,62 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* ── Brand tokens: light mode ── */
+:root {
+  --brand-coral: #d85a30;
+  --brand-coral-hover: #c04e28;
+  --brand-wa: #25D366;
+
+  --brand-page: #fdf8e2;
+  /* layout bg */
+  --brand-card: #fef9ed;
+  /* card/modal/sheet bg */
+  --brand-border: #e8dfc4;
+  /* card borders */
+  --brand-hr: #e0d5b8;
+  /* dividers */
+
+  --brand-heading: #1a1a1a;
+  /* h1/h2 */
+  --brand-muted: #8a7a5a;
+  /* subtitles, desc, labels */
+  --brand-subtle: #8a7a5a;
+  /* same in light, differs in dark */
+
+  --brand-navy: #fef9ed;
+  /* dropdown/modal bg (warm in light) */
+
+  --brand-warm-text: #f3efe6;
+  /* UpdateClient dark button text */
+  --brand-reply-border: #fee075;
+  /* Reply page card border */
+}
+
+/* ── Brand tokens: dark mode ── */
+.dark {
+  --brand-page: #080c10;
+  --brand-card: #0d1b33;
+  --brand-border: #1e2a4a;
+  --brand-hr: #1e2a4a;
+
+  --brand-heading: #e8edf8;
+  --brand-muted: #89aee6;
+  --brand-subtle: #4a6fa5;
+
+  --brand-navy: #0a0f1e;
+  /* dropdown/modal bg (deep navy in dark) */
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
+
 @keyframes scan {
   0% {
     top: 0%;

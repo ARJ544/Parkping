@@ -23,7 +23,7 @@ export default function TemplateSelector({
 }: TemplateSelectorProps) {
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-xs font-bold uppercase tracking-widest text-[#8a7a5a] dark:text-[#89aee6]">
+      <p className="text-xs font-bold uppercase tracking-widest text-brand-muted">
         Choose Template
       </p>
 
@@ -34,8 +34,8 @@ export default function TemplateSelector({
             onClick={() => onSelectTemplate(t)}
             className={`relative rounded-xl overflow-hidden border-2 transition-all duration-300 aspect-3/4 hover:-translate-y-0.5 hover:shadow-md
               ${selectedTemplate.id === t.id
-                ? "border-[#d85a30] shadow-sm"
-                : "border-[#e8dfc4] dark:border-[#1e2a4a] hover:border-[#d85a30]/50 dark:hover:border-[#d85a30]/60"
+                ? "border-coral shadow-sm"
+                : "border-brand-border hover:border-coral/50 dark:hover:border-coral/60"
               }`}
           >
             <img
@@ -53,7 +53,7 @@ export default function TemplateSelector({
 
             {/* Selected checkmark */}
             {selectedTemplate.id === t.id && (
-              <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-[#d85a30] flex items-center justify-center shadow-sm">
+              <div className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-coral flex items-center justify-center shadow-sm">
                 <Check className="w-2.5 h-2.5 text-white" />
               </div>
             )}

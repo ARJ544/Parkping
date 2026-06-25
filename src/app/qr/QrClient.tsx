@@ -30,13 +30,13 @@ export default function GenerateQRClient({ finder_id }: Props) {
   const [selectedTemplate, setSelectedTemplate] = useState(TEMPLATES[0]);
 
   return (
-    <div className="min-h-screen text-slate-900 dark:text-slate-50">
+    <div className="min-h-screen text-brand-heading dark:text-slate-50">
       <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-10">
         <div className="flex flex-col gap-1">
-          <h1 className={`${unbounded.className} text-3xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8]`}>
+          <h1 className={`${unbounded.className} text-3xl font-extrabold tracking-tight text-brand-heading dark:text-brand-heading`}>
             Your QR Code
           </h1>
-          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6]">
+          <p className="text-sm text-brand-muted">
             Choose a template, then download your sticker.
           </p>
         </div>
@@ -63,15 +63,15 @@ export default function GenerateQRClient({ finder_id }: Props) {
             />
 
             {/* Info box */}
-            <div className="rounded-2xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0d1b33] px-4 py-3">
-              <p className="text-xs leading-relaxed text-[#8a7a5a] dark:text-[#89aee6]">
-                <span className="font-semibold text-slate-900 dark:text-[#e8edf8]">
+            <div className="rounded-2xl border border-brand-border bg-brand-card px-4 py-3">
+              <p className="text-xs leading-relaxed text-brand-muted">
+                <span className="font-semibold text-brand-heading dark:text-brand-heading">
                   Good to know:{" "}
                 </span>
                 Whenever you make or receive a call the number will be:{" "}
                 <a
                   href="tel:+18287618181"
-                  className="font-bold text-[#d85a30] dark:text-[#d85a30] underline decoration-[#d85a30]/40 underline-offset-2 hover:text-[#c04e28] transition-colors"
+                  className="font-bold text-coral dark:text-coral underline decoration-coral/40 underline-offset-2 hover:text-coral-hover transition-colors"
                 >
                   {process.env.NEXT_PUBLIC_TWILIO_NUMBER}
                 </a>

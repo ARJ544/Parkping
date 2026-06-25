@@ -7,7 +7,7 @@ const syne = Syne({ subsets: ["latin"], weight: ["700", "800"] });
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen text-slate-900 dark:text-slate-50">
+    <div className="min-h-screen text-brand-heading dark:text-slate-50">
       <div className="max-w-3xl mx-auto px-8 py-16 flex flex-col gap-10">
 
         <div className="flex flex-col gap-2">
@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
         <div className="flex flex-col gap-10 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">1. Introduction</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">1. Introduction</h2>
             <p>
               Welcome to {COMPANY_NAME}. We are committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information when you use our platform to generate and manage QR codes for any item you own.
             </p>
@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">2. What We Collect</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">2. What We Collect</h2>
             <p>We only collect what is necessary to provide the service:</p>
             <ul className="flex flex-col gap-2 pl-4 list-disc">
               <li><strong className="text-slate-700 dark:text-slate-200">Phone number</strong> — used to route anonymous messages to you when someone scans your QR code.</li>
@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">3. How We Use Your Information</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">3. How We Use Your Information</h2>
             <ul className="flex flex-col gap-2 pl-4 list-disc">
               <li>To relay anonymous messages from scanners to you via your phone number</li>
               <li>To generate and manage your unique QR codes</li>
@@ -52,7 +52,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">4. Data Security</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">4. Data Security</h2>
             <p>
               We use industry-standard security measures including encryption in transit (SSL/TLS) and at rest. Your phone number is never exposed to scanners — all communication is routed through {COMPANY_NAME} anonymously.
             </p>
@@ -62,14 +62,14 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">5. Data Retention</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">5. Data Retention</h2>
             <p>
               We retain your data for as long as your account is active. When you delete your account, your phone number and associated QR codes are permanently removed from our systems.
             </p>
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">6. Your Rights</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">6. Your Rights</h2>
             <ul className="flex flex-col gap-2 pl-4 list-disc">
               <li><strong className="text-slate-700 dark:text-slate-200">Access</strong> — you can view the data we hold about you at any time.</li>
               <li><strong className="text-slate-700 dark:text-slate-200">Correction</strong> — you can update your details from the Update page.</li>
@@ -79,28 +79,28 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">7. Cookies</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">7. Cookies</h2>
             <p>
               We use only essential cookies required to keep you logged in and the service functional. We do not use advertising or tracking cookies.
             </p>
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">8. Third-Party Links</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">8. Third-Party Links</h2>
             <p>
               Our platform may contain links to external sites. This policy applies only to {COMPANY_NAME}. We are not responsible for the privacy practices of third-party websites.
             </p>
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">9. Children's Privacy</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">9. Children's Privacy</h2>
             <p>
               {COMPANY_NAME} is not intended for anyone under the age of 13. We do not knowingly collect information from children. If you believe a child has created an account, please contact us immediately.
             </p>
           </section>
 
           <section className="flex flex-col gap-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-slate-50">10. Changes to This Policy</h2>
+            <h2 className="text-base font-bold text-brand-heading dark:text-slate-50">10. Changes to This Policy</h2>
             <p>
               We may update this policy occasionally. Material changes will be reflected by updating the "Last updated" date at the top. Continued use of {COMPANY_NAME} after changes means you accept the updated policy.
             </p>

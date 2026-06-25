@@ -14,39 +14,39 @@ export default function ContactUs() {
 
         {/* Hero */}
         <div className="text-center mb-16">
-          <h1 className={`text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-[#e8edf8]`}>
-            Get in <span className="text-[#d85a30]">Touch.</span>
+          <h1 className={`text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-brand-heading dark:text-brand-heading`}>
+            Get in <span className="text-coral">Touch.</span>
           </h1>
-          <p className="text-base text-[#8a7a5a] dark:text-[#89aee6] max-w-2xl mx-auto">
+          <p className="text-base text-brand-muted max-w-2xl mx-auto">
             Have questions? We'd love to hear from you. Get in touch with our team anytime.
           </p>
         </div>
 
         {/* Contact Cards */}
         <div className="flex flex-col gap-4 mb-16">
-          <h2 className={`text-2xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8] mb-4`}>
+          <h2 className={`text-2xl font-extrabold tracking-tight text-brand-heading dark:text-brand-heading mb-4`}>
             Contact Information
           </h2>
 
           {/* Email */}
           <div className="flex items-start gap-4 rounded-2xl p-6 border
-            border-[#e8dfc4] dark:border-[#1e2a4a]
-            bg-[#fef9ed] dark:bg-[#0d1b33]
-            shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#d85a30]/40 dark:hover:border-[#d85a30]/60
+            border-brand-border
+            bg-brand-card
+            shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-coral/40 dark:hover:border-coral/60
             transition-all duration-300 group">
             <div className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center
-              bg-orange-50 text-[#d85a30]
-              dark:bg-[#d85a30]/10 dark:text-[#d85a30]
-              group-hover:scale-110 group-hover:bg-[#d85a30] group-hover:text-white
-              dark:group-hover:bg-[#d85a30] dark:group-hover:text-white
+              bg-orange-50 text-coral
+              dark:bg-coral/10 dark:text-coral
+              group-hover:scale-110 group-hover:bg-coral group-hover:text-white
+              dark:group-hover:bg-coral dark:group-hover:text-white
               transition-all duration-300 ease-out">
               <Mail className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] mb-1">Email</h3>
+              <h3 className="font-bold text-sm text-brand-heading dark:text-brand-heading mb-1">Email</h3>
               <Link
                 href="mailto:mail.abhinavranjanjha@gmail.com"
-                className="text-sm text-[#8a7a5a] dark:text-[#89aee6] hover:text-[#d85a30] dark:hover:text-[#d85a30] transition-colors"
+                className="text-sm text-brand-muted hover:text-coral dark:hover:text-coral transition-colors"
               >
                 mail.abhinavranjanjha@gmail.com
               </Link>
@@ -55,21 +55,21 @@ export default function ContactUs() {
 
           {/* Location */}
           <div className="flex items-start gap-4 rounded-2xl p-6 border
-            border-[#e8dfc4] dark:border-[#1e2a4a]
-            bg-[#fef9ed] dark:bg-[#0d1b33]
-            shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#d85a30]/40 dark:hover:border-[#d85a30]/60
+            border-brand-border
+            bg-brand-card
+            shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-coral/40 dark:hover:border-coral/60
             transition-all duration-300 group">
             <div className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center
-              bg-orange-50 text-[#d85a30]
-              dark:bg-[#d85a30]/10 dark:text-[#d85a30]
-              group-hover:scale-110 group-hover:bg-[#d85a30] group-hover:text-white
-              dark:group-hover:bg-[#d85a30] dark:group-hover:text-white
+              bg-orange-50 text-coral
+              dark:bg-coral/10 dark:text-coral
+              group-hover:scale-110 group-hover:bg-coral group-hover:text-white
+              dark:group-hover:bg-coral dark:group-hover:text-white
               transition-all duration-300 ease-out">
               <MapPin className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] mb-1">Location</h3>
-              <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed">
+              <h3 className="font-bold text-sm text-brand-heading dark:text-brand-heading mb-1">Location</h3>
+              <p className="text-sm text-brand-muted leading-relaxed">
                 Global Coverage<br />Available 24/7
               </p>
             </div>
@@ -77,10 +77,10 @@ export default function ContactUs() {
 
           {/* Social */}
           <div className="rounded-2xl p-6 border
-            border-[#e8dfc4] dark:border-[#1e2a4a]
-            bg-[#fef9ed] dark:bg-[#0d1b33]
+            border-brand-border
+            bg-brand-card
             shadow-sm transition-all duration-300">
-            <h3 className="font-bold text-sm text-slate-900 dark:text-[#e8edf8] mb-4">Follow Us</h3>
+            <h3 className="font-bold text-sm text-brand-heading dark:text-brand-heading mb-4">Follow Us</h3>
             <div className="flex gap-3">
 
               <Link
@@ -89,11 +89,11 @@ export default function ContactUs() {
                 rel="noopener noreferrer"
                 title="GitHub"
                 className="w-10 h-10 rounded-xl flex items-center justify-center
-                  bg-orange-50 text-[#d85a30]
-                  dark:bg-[#d85a30]/10 dark:text-[#d85a30]
-                  border border-[#e8dfc4] dark:border-[#1e2a4a]
-                  hover:bg-[#d85a30] hover:text-white hover:border-[#d85a30]
-                  dark:hover:bg-[#d85a30] dark:hover:text-white
+                  bg-orange-50 text-coral
+                  dark:bg-coral/10 dark:text-coral
+                  border border-brand-border
+                  hover:bg-coral hover:text-white hover:border-coral
+                  dark:hover:bg-coral dark:hover:text-white
                   hover:scale-110 transition-all duration-300 ease-out"
               >
                 <svg viewBox="0 0 16 16" className="h-5 w-5" aria-hidden="true" fill="currentColor">
@@ -107,11 +107,11 @@ export default function ContactUs() {
                 rel="noopener noreferrer"
                 title="LinkedIn"
                 className="w-10 h-10 rounded-xl flex items-center justify-center
-                  bg-orange-50 text-[#d85a30]
-                  dark:bg-[#d85a30]/10 dark:text-[#d85a30]
-                  border border-[#e8dfc4] dark:border-[#1e2a4a]
-                  hover:bg-[#d85a30] hover:text-white hover:border-[#d85a30]
-                  dark:hover:bg-[#d85a30] dark:hover:text-white
+                  bg-orange-50 text-coral
+                  dark:bg-coral/10 dark:text-coral
+                  border border-brand-border
+                  hover:bg-coral hover:text-white hover:border-coral
+                  dark:hover:bg-coral dark:hover:text-white
                   hover:scale-110 transition-all duration-300 ease-out"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true" fill="currentColor">

@@ -38,10 +38,10 @@ export default function DeleteAccountClient() {
 
         {/* Header */}
         <div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8]">
+          <h1 className="text-4xl font-extrabold tracking-tight text-brand-heading dark:text-brand-heading">
             Delete Account
           </h1>
-          <p className="mt-2 text-sm text-[#8a7a5a] dark:text-[#89aee6]">
+          <p className="mt-2 text-sm text-brand-muted">
             Permanently delete your account and all associated data.
           </p>
         </div>
@@ -82,27 +82,27 @@ export default function DeleteAccountClient() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="sm:max-w-md rounded-2xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0a0f1e]">
+            <DialogContent className="sm:max-w-md rounded-2xl border border-brand-border bg-brand-card dark:bg-brand-navy">
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2 text-red-600 dark:text-red-400">
                   <AlertTriangle className="h-5 w-5" />
                   Confirm Account Deletion
                 </DialogTitle>
-                <DialogDescription className="text-[#8a7a5a] dark:text-[#89aee6]">
+                <DialogDescription className="text-brand-muted">
                   This action cannot be undone.
                 </DialogDescription>
               </DialogHeader>
 
               <div className="flex flex-col gap-4">
-                <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6]">
-                  Type <span className="font-semibold text-slate-900 dark:text-[#e8edf8]">"delete"</span> to confirm account deletion.
+                <p className="text-sm text-brand-muted">
+                  Type <span className="font-semibold text-brand-heading dark:text-brand-heading">"delete"</span> to confirm account deletion.
                 </p>
 
                 <Input
                   value={confirmText}
                   onChange={(e) => setConfirmText(e.target.value)}
                   placeholder='Type "delete"'
-                  className="font-semibold rounded-xl border-[#e8dfc4] dark:border-[#1e2a4a] bg-white dark:bg-[#0d1b33] text-slate-900 dark:text-[#e8edf8] placeholder:text-[#8a7a5a] dark:placeholder:text-[#4a6fa5]"
+                  className="font-semibold rounded-xl border-brand-border bg-white dark:bg-brand-card text-brand-heading dark:text-brand-heading placeholder:text-brand-muted dark:placeholder:text-brand-subtle"
                 />
 
                 {message && (
@@ -120,7 +120,7 @@ export default function DeleteAccountClient() {
                     setConfirmText("");
                   }}
                   disabled={deleting}
-                  className="rounded-full border-[#e8dfc4] dark:border-[#1e2a4a] text-[#8a7a5a] dark:text-[#89aee6] hover:border-[#d85a30]/50 dark:hover:border-[#d85a30]/60 hover:text-[#d85a30] dark:hover:text-[#d85a30] bg-transparent transition-all duration-200"
+                  className="rounded-full border-brand-border text-brand-muted hover:border-coral/50 dark:hover:border-coral/60 hover:text-coral dark:hover:text-coral bg-transparent transition-all duration-200"
                 >
                   Cancel
                 </Button>
@@ -138,9 +138,9 @@ export default function DeleteAccountClient() {
         </div>
 
         {/* Info Box */}
-        <div className="rounded-2xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0d1b33] px-5 py-4">
-          <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] leading-relaxed">
-            <span className="font-semibold text-slate-900 dark:text-[#e8edf8]">Note: </span>
+        <div className="rounded-2xl border border-brand-border bg-brand-card px-5 py-4">
+          <p className="text-sm text-brand-muted leading-relaxed">
+            <span className="font-semibold text-brand-heading dark:text-brand-heading">Note: </span>
             If you're having issues with your account, please contact our support team before deleting.
           </p>
         </div>

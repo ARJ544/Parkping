@@ -120,7 +120,7 @@ export default function VerifyPhoneUnknownUser({
             <button
               onClick={handleCustomClick}
               disabled={loading}
-              className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 text-white font-semibold py-3 rounded-lg transition active:scale-[0.97] disabled:opacity-50"
+              className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-brand-heading dark:hover:bg-slate-200 text-white font-semibold py-3 rounded-lg transition active:scale-[0.97] disabled:opacity-50"
             >
               {loading ? "Verifying..." : "Verify Phone"}
             </button>

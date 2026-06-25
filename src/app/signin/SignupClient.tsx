@@ -75,10 +75,10 @@ export default function SignupClient() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-[#fcf2ce] dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
+      <div className="w-full max-w-md bg-brand-card dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
 
         <div className="flex flex-col gap-2 mb-8 text-center">
-          <h1 className="text-slate-900 dark:text-white text-3xl font-black tracking-tight">
+          <h1 className="text-brand-heading dark:text-white text-3xl font-black tracking-tight">
             Create Account or Login Back
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm">
@@ -89,7 +89,7 @@ export default function SignupClient() {
         <button
           onClick={handleCustomClick}
           disabled={loading}
-          className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 text-white font-semibold py-3 rounded-lg transition active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-brand-heading dark:hover:bg-slate-200 text-white font-semibold py-3 rounded-lg transition active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Verifying..." : "Verify Phone Number"}
         </button>

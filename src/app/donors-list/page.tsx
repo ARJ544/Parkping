@@ -56,33 +56,33 @@ export default async function DonorsPage({
   };
 
   return (
-    <div className="min-h-screen text-slate-900 dark:text-slate-50 transition-colors duration-300">
+    <div className="min-h-screen text-brand-heading dark:text-slate-50 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 py-6">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-[#e0d5b8] dark:border-[#1e2a4a] mb-6 gap-4 pb-5">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b border-brand-hr mb-6 gap-4 pb-5">
           <div>
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8] flex items-center gap-3">
-              <Heart className="w-7 h-7 text-[#d85a30] fill-current animate-pulse" />
+            <h1 className="text-3xl font-extrabold tracking-tight text-brand-heading dark:text-brand-heading flex items-center gap-3">
+              <Heart className="w-7 h-7 text-coral fill-current animate-pulse" />
               Our Supporters
             </h1>
-            <p className="text-sm text-[#8a7a5a] dark:text-[#89aee6] mt-2">
+            <p className="text-sm text-brand-muted mt-2">
               Every contribution helps sustain our servers, power features, and keep the platform alive.
             </p>
           </div>
 
           {/* Total Supporters Badge */}
           <div className="flex items-center gap-3 rounded-2xl p-4 self-start md:self-auto
-            border border-[#e8dfc4] dark:border-[#1e2a4a]
-            bg-[#fef9ed] dark:bg-[#0d1b33]">
-            <div className="p-2.5 bg-[#d85a30] text-white rounded-xl">
+            border border-brand-border
+            bg-brand-card">
+            <div className="p-2.5 bg-coral text-white rounded-xl">
               <Users className="w-5 h-5" />
             </div>
             <div>
-              <span className="block text-[10px] text-[#8a7a5a] dark:text-[#4a6fa5] uppercase font-bold tracking-wider">
+              <span className="block text-[10px] text-brand-muted dark:text-brand-subtle uppercase font-bold tracking-wider">
                 Total Supporters
               </span>
-              <span className="text-xl font-black text-[#d85a30]">
+              <span className="text-xl font-black text-coral">
                 {totalDonors}
               </span>
             </div>
@@ -93,8 +93,8 @@ export default async function DonorsPage({
 
         {/* Donors Grid */}
         {donations.length === 0 ? (
-          <div className="text-center py-16 border border-dashed border-[#e8dfc4] dark:border-[#1e2a4a] rounded-2xl bg-[#fef9ed] dark:bg-[#0d1b33]">
-            <p className="text-[#8a7a5a] dark:text-[#89aee6] font-medium">
+          <div className="text-center py-16 border border-dashed border-brand-border rounded-2xl bg-brand-card">
+            <p className="text-brand-muted font-medium">
               No donations recorded yet. Be the first to support!
             </p>
           </div>
@@ -104,25 +104,25 @@ export default async function DonorsPage({
               <div
                 key={donation.id}
                 className="flex flex-col justify-between rounded-2xl p-5
-                  border border-[#e8dfc4] dark:border-[#1e2a4a]
-                  bg-[#fef9ed] dark:bg-[#0d1b33]
+                  border border-brand-border
+                  bg-brand-card
                   shadow-sm hover:shadow-md hover:-translate-y-1
-                  hover:border-[#d85a30]/40 dark:hover:border-[#d85a30]/60
+                  hover:border-coral/40 dark:hover:border-coral/60
                   transition-all duration-300 group relative overflow-hidden"
               >
                 {/* Hover glow */}
-                <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-coral/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 <div className="relative z-10">
                   {/* Top row: Name & Amount */}
                   <div className="flex justify-between items-start gap-4 mb-3">
-                    <h3 className="font-bold text-base tracking-tight text-slate-900 dark:text-[#e8edf8] truncate max-w-[65%] group-hover:text-[#d85a30] dark:group-hover:text-[#d85a30] transition-colors duration-200">
+                    <h3 className="font-bold text-base tracking-tight text-brand-heading dark:text-brand-heading truncate max-w-[65%] group-hover:text-coral dark:group-hover:text-coral transition-colors duration-200">
                       {donation.donor_name || "Anonymous Donor"}
                     </h3>
                     <span className="inline-flex items-center gap-0.5 px-3 py-1
-                      bg-orange-50 dark:bg-[#d85a30]/10
-                      border border-[#d85a30]/20 dark:border-[#d85a30]/30
-                      rounded-full text-sm font-bold text-[#d85a30]">
+                      bg-orange-50 dark:bg-coral/10
+                      border border-coral/20 dark:border-coral/30
+                      rounded-full text-sm font-bold text-coral">
                       <DollarSign className="w-3.5 h-3.5 -mr-0.5" />
                       {donation.amount_usd}
                     </span>
@@ -135,7 +135,7 @@ export default async function DonorsPage({
                 </div>
 
                 {/* Timestamp */}
-                <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#8a7a5a] dark:text-[#4a6fa5] mt-auto border-t border-[#e8dfc4] dark:border-[#1e2a4a] pt-3 relative z-10">
+                <div className="flex items-center gap-1.5 text-[11px] font-medium text-brand-muted dark:text-brand-subtle mt-auto border-t border-brand-border pt-3 relative z-10">
                   <Calendar className="w-3.5 h-3.5" />
                   <span>
                     {new Date(donation.donated_at).toLocaleDateString('en-US', {

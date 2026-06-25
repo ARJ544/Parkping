@@ -74,12 +74,12 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
             className={cn(
               "group relative flex items-center justify-center",
               "h-9 w-9 rounded-lg cursor-pointer",
-              "bg-[#d85a30]",
-              "hover:bg-[#c04e28]",
+              "bg-coral",
+              "hover:bg-coral-hover",
               "hover:scale-[1.08] active:scale-95",
               "transition-all duration-200 ease-out",
-              "ring-[2.5px] ring-[#d85a30]/30 hover:ring-[#d85a30]/60",
-              "outline-none focus-visible:ring-[3px] focus-visible:ring-[#d85a30]/70"
+              "ring-[2.5px] ring-coral/30 hover:ring-coral/60",
+              "outline-none focus-visible:ring-[3px] focus-visible:ring-coral/70"
             )}
             aria-label="Open profile menu"
           >
@@ -98,8 +98,8 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
           sideOffset={8}
           className={cn(
             "z-50 w-64 rounded-2xl p-0 overflow-hidden",
-            "border border-[#e8dfc4] dark:border-[#1e2a4a]",
-            "bg-[#fef9ed]/95 dark:bg-[#0a0f1e]/95 backdrop-blur-xl",
+            "border border-brand-border",
+            "bg-brand-card/95 dark:bg-brand-navy/95 backdrop-blur-xl",
             "shadow-[0_8px_40px_rgba(0,0,0,0.10)]",
             "dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)]",
             "animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 duration-150"
@@ -107,13 +107,13 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
         >
           {/* Profile Header */}
           <div className="relative px-4 pt-4 pb-3 overflow-hidden">
-            <div className="absolute inset-0 bg-linear-to-br from-[#d85a30]/8 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-br from-coral/8 to-transparent pointer-events-none" />
             <div className="relative flex items-center gap-3">
               <div className="relative shrink-0">
                 <div className={cn(
                   "flex h-11 w-11 items-center justify-center rounded-xl",
-                  "bg-[#d85a30]",
-                  "ring-2 ring-[#d85a30]/30"
+                  "bg-coral",
+                  "ring-2 ring-coral/30"
                 )}>
                   <CircleUserRound className="h-5 w-5 text-white" />
                 </div>
@@ -124,7 +124,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
                 )}
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="text-sm font-semibold text-slate-900 dark:text-[#e8edf8] leading-tight tracking-tight">
+                <span className="text-sm font-semibold text-brand-heading dark:text-brand-heading leading-tight tracking-tight">
                   My Account
                 </span>
                 {isVerified ? (
@@ -133,7 +133,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
                     Verified account
                   </span>
                 ) : (
-                  <span className="mt-0.5 text-[11px] text-[#8a7a5a] dark:text-[#4a6fa5]">
+                  <span className="mt-0.5 text-[11px] text-brand-muted dark:text-brand-subtle">
                     Unverified account
                   </span>
                 )}
@@ -141,11 +141,11 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
             </div>
           </div>
 
-          <DropdownMenuSeparator className="my-0 bg-[#e8dfc4] dark:bg-[#1e2a4a]" />
+          <DropdownMenuSeparator className="my-0 bg-brand-border dark:bg-brand-border" />
 
           {/* Account Section */}
           <div className="px-2 py-2 space-y-0.5">
-            <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#8a7a5a] dark:text-[#4a6fa5]">
+            <p className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-brand-muted dark:text-brand-subtle">
               Account
             </p>
 
@@ -155,17 +155,17 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
                 href="/update"
                 className={cn(
                   "flex items-center gap-2.5 px-2.5 py-2 rounded-xl w-full",
-                  "text-sm text-slate-700 dark:text-[#89aee6] hover:text-slate-900 dark:hover:text-[#e8edf8]",
-                  "hover:bg-[#d85a30]/8 dark:hover:bg-[#d85a30]/10",
+                  "text-sm text-slate-700 dark:text-brand-muted hover:text-brand-heading dark:hover:text-brand-heading",
+                  "hover:bg-coral/8 dark:hover:bg-coral/10",
                   "transition-all duration-150 cursor-pointer",
-                  "focus:outline-none focus:bg-[#d85a30]/8"
+                  "focus:outline-none focus:bg-coral/8"
                 )}
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#e8dfc4]/60 dark:bg-[#1e2a4a] group-hover:bg-[#d85a30]/15 transition-colors">
-                  <Phone className="h-3.5 w-3.5 text-[#8a7a5a] dark:text-[#4a6fa5] group-hover:text-[#d85a30] transition-colors" />
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-border/60 dark:bg-brand-border group-hover:bg-coral/15 transition-colors">
+                  <Phone className="h-3.5 w-3.5 text-brand-muted dark:text-brand-subtle group-hover:text-coral transition-colors" />
                 </span>
                 <span className="flex-1 font-medium">Update Phone</span>
-                <ChevronRight className="h-3.5 w-3.5 text-[#8a7a5a]/40 dark:text-[#4a6fa5]/40 group-hover:text-[#d85a30]/70 group-hover:translate-x-0.5 transition-all" />
+                <ChevronRight className="h-3.5 w-3.5 text-brand-muted/40 dark:text-brand-subtle/40 group-hover:text-coral/70 group-hover:translate-x-0.5 transition-all" />
               </Link>
             </DropdownMenuItem>
 
@@ -228,7 +228,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
             </DropdownMenuItem>
           </div>
 
-          <DropdownMenuSeparator className="my-0 bg-[#e8dfc4] dark:bg-[#1e2a4a]" />
+          <DropdownMenuSeparator className="my-0 bg-brand-border dark:bg-brand-border" />
 
           {/* Sign Out */}
           <div className="px-2 py-2">
@@ -253,12 +253,12 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
       {/* Disconnect Warning Modal */}
       {showDisconnectWarning && createPortal(
         <div className="fixed inset-0 z-9999 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-          <div className="w-full max-w-xs rounded-2xl p-5 shadow-xl border border-[#e8dfc4] dark:border-[#1e2a4a] bg-[#fef9ed] dark:bg-[#0a0f1e]">
+          <div className="w-full max-w-xs rounded-2xl p-5 shadow-xl border border-brand-border bg-brand-card dark:bg-brand-navy">
 
-            <h2 className="text-base font-semibold text-slate-900 dark:text-[#e8edf8] mb-1">
+            <h2 className="text-base font-semibold text-brand-heading dark:text-brand-heading mb-1">
               Disconnect WhatsApp?
             </h2>
-            <p className="text-xs text-[#8a7a5a] dark:text-[#89aee6] mb-3 leading-relaxed">
+            <p className="text-xs text-brand-muted mb-3 leading-relaxed">
               You will <span className="font-semibold text-red-500">stop receiving messages</span> from finders.
               They will only be able to reach you via call.
             </p>
@@ -277,10 +277,10 @@ export default function ProfileDropdown({ isVerified, bsuid, token }: ProfileDro
               </button>
               <button
                 onClick={() => setShowDisconnectWarning(false)}
-                className="flex-1 border border-[#e8dfc4] dark:border-[#1e2a4a] text-sm font-medium rounded-xl px-3 py-2
-                  text-[#8a7a5a] dark:text-[#89aee6]
-                  hover:border-[#d85a30]/50 dark:hover:border-[#d85a30]/60
-                  hover:text-[#d85a30] dark:hover:text-[#d85a30]
+                className="flex-1 border border-brand-border text-sm font-medium rounded-xl px-3 py-2
+                  text-brand-muted
+                  hover:border-coral/50 dark:hover:border-coral/60
+                  hover:text-coral dark:hover:text-coral
                   bg-transparent transition-all duration-200"
               >
                 Cancel

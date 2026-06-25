@@ -13,10 +13,10 @@ const QUICK_MESSAGES = [
 ];
 
 const triggerBtn =
-  "h-12 w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200 text-white font-semibold rounded-3xl transition active:scale-[0.97]";
+  "h-12 w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-black dark:hover:bg-slate-200 text-white font-semibold rounded-3xl transition active:scale-[0.97]";
 
 const sheet =
-  "relative w-full bg-[#fcf2ce] dark:bg-slate-900 rounded-t-2xl animate-slideUp max-h-[90dvh] flex flex-col border-t border-slate-100 dark:border-slate-800";
+  "relative w-full bg-brand-card dark:bg-slate-900 rounded-t-2xl animate-slideUp max-h-[90dvh] flex flex-col border-t border-slate-100 dark:border-slate-800";
 
 const headerBorder = "border-b border-slate-100 dark:border-slate-800";
 
@@ -24,10 +24,10 @@ const sectionLabel =
   "text-[11px] font-medium uppercase tracking-widest text-slate-400 dark:text-slate-500 px-5 pt-4 pb-2";
 
 const textareaStyle =
-  "w-full text-[13.5px] text-slate-800 dark:text-slate-200 rounded-[14px] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3.5 py-3 outline-none focus:border-[#25D366] resize-none transition-colors placeholder:text-slate-400 dark:placeholder:text-slate-600 font-[inherit] leading-relaxed";
+  "w-full text-[13.5px] text-slate-800 dark:text-slate-200 rounded-[14px] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3.5 py-3 outline-none focus:border-brand-wa resize-none transition-colors placeholder:text-slate-400 dark:placeholder:text-slate-600 font-[inherit] leading-relaxed";
 
 const sendBtn =
-  "w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed";
+  "w-full flex items-center justify-center gap-2 bg-brand-wa hover:bg-[#1ebe5d] disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed";
 
 const callBtn =
   "flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed";
@@ -198,16 +198,16 @@ export default function MessageOwner({
 
             {/* Header */}
             <div className={`flex items-center justify-between px-5 pb-4 ${headerBorder}`}>
-              <span className="text-base font-semibold tracking-tight text-slate-900 dark:text-[#e8edf8]">
+              <span className="text-base font-semibold tracking-tight text-brand-heading dark:text-brand-heading">
                 Send a message
               </span>
               <button
                 onClick={closeSheet}
                 className="w-7 h-7 flex items-center justify-center rounded-full
-                    bg-[#e8dfc4]/60 dark:bg-[#1e2a4a]
-                    text-[#8a7a5a] dark:text-[#4a6fa5]
-                    hover:bg-[#d85a30]/10 hover:text-[#d85a30]
-                    dark:hover:bg-[#d85a30]/10 dark:hover:text-[#d85a30]
+                    bg-brand-border/60 dark:bg-brand-border
+                    text-brand-muted dark:text-brand-subtle
+                    hover:bg-coral/10 hover:text-coral
+                    dark:hover:bg-coral/10 dark:hover:text-coral
                     transition-colors"
               >
                 <X size={13} />
@@ -229,19 +229,19 @@ export default function MessageOwner({
                       }}
                       className={`flex items-center gap-3 rounded-2xl px-3.5 py-3 text-left text-[13.5px] leading-snug transition-all
                           ${active
-                          ? "bg-[#25D366]/10 border border-[#25D366]"
-                          : "bg-[#fef9ed] dark:bg-[#0d1b33] border border-[#e8dfc4] dark:border-[#1e2a4a] hover:border-[#d85a30]/40 dark:hover:border-[#d85a30]/40"
+                        ? "bg-brand-wa/10 border border-brand-wa"
+                          : "bg-brand-card border border-brand-border hover:border-coral/40 dark:hover:border-coral/40"
                         }`}
                     >
                       <span className={`w-4 h-4 rounded-full border-[1.5px] shrink-0 flex items-center justify-center transition-all
                           ${active
-                          ? "bg-[#25D366] border-[#25D366]"
-                          : "border-[#e8dfc4] dark:border-[#1e2a4a]"
+                        ? "bg-brand-wa border-brand-wa"
+                          : "border-brand-border"
                         }`}
                       >
                         {active && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
                       </span>
-                      <span className="text-slate-800 dark:text-[#89aee6]">{m}</span>
+                      <span className="text-slate-800 dark:text-brand-muted">{m}</span>
                     </button>
                   );
                 })}
@@ -252,7 +252,7 @@ export default function MessageOwner({
               <div className="px-4">
                 <textarea
                   rows={3}
-                  placeholder="Write your own message..."
+                  placeholder="I had found your lost item. Please reply me to contact..."
                   value={custom}
                   onChange={(e) => {
                     setCustom(e.target.value);
@@ -287,7 +287,7 @@ export default function MessageOwner({
                     >
                       {sending ? "Sending..." : "Send Message"}
                     </button>
-                    <p className="text-center text-[10px] text-[#8a7a5a] dark:text-[#4a6fa5] tracking-wide">
+                    <p className="text-center text-[10px] text-brand-muted dark:text-brand-subtle tracking-wide">
                       No verification required
                     </p>
                   </div>
@@ -316,13 +316,13 @@ export default function MessageOwner({
                     <button
                       onClick={() => setShowCredits(true)}
                       className="inline-flex items-center gap-1.5 text-[11px] font-medium
-                          text-[#8a7a5a] dark:text-[#89aee6]
-                          hover:text-slate-900 dark:hover:text-[#e8edf8]
-                          bg-[#e8dfc4]/60 dark:bg-[#1e2a4a]
-                          hover:bg-[#d85a30]/10 dark:hover:bg-[#d85a30]/10
+                          text-brand-muted
+                          hover:text-brand-heading dark:hover:text-brand-heading
+                          bg-brand-border/60 dark:bg-brand-border
+                          hover:bg-coral/10 dark:hover:bg-coral/10
                           px-2.5 py-1 rounded-full transition-colors"
                     >
-                      <span className="font-semibold text-[#d85a30]">
+                      <span className="font-semibold text-coral">
                         {creditsLoading ? "..." : callCredits}
                       </span>
                       credits
@@ -344,51 +344,51 @@ export default function MessageOwner({
             onClick={() => setShowCredits(false)}
           />
           <div className="relative w-full max-w-xs rounded-2xl shadow-xl p-5 flex flex-col gap-3
-              border border-[#e8dfc4] dark:border-[#1e2a4a]
-              bg-[#fef9ed] dark:bg-[#0a0f1e]">
+              border border-brand-border
+              bg-brand-card dark:bg-brand-navy">
 
             {/* Header */}
             <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-slate-900 dark:text-[#e8edf8]">
+              <span className="text-sm font-semibold text-brand-heading dark:text-brand-heading">
                 Call Credits
               </span>
               <button
                 onClick={() => setShowCredits(false)}
                 className="w-7 h-7 flex items-center justify-center rounded-full
-                    bg-[#e8dfc4]/60 dark:bg-[#1e2a4a]
-                    text-[#8a7a5a] dark:text-[#4a6fa5]
-                    hover:bg-[#d85a30]/10 hover:text-[#d85a30]
-                    dark:hover:bg-[#d85a30]/10 dark:hover:text-[#d85a30]
+                    bg-brand-border/60 dark:bg-brand-border
+                    text-brand-muted dark:text-brand-subtle
+                    hover:bg-coral/10 hover:text-coral
+                    dark:hover:bg-coral/10 dark:hover:text-coral
                     transition-colors"
               >
                 <X size={13} />
               </button>
             </div>
 
-            <hr className="border-[#e8dfc4] dark:border-[#1e2a4a]" />
+            <hr className="border-brand-border" />
 
             <div className="flex flex-col gap-2 text-[13px]">
               <div className="flex items-center justify-between">
-                <span className="text-[#8a7a5a] dark:text-[#89aee6]">Remaining</span>
-                <span className="font-semibold text-[#d85a30] bg-orange-50 dark:bg-[#d85a30]/10 px-2 py-0.5 rounded-lg">
+                <span className="text-brand-muted">Remaining</span>
+                <span className="font-semibold text-coral bg-orange-50 dark:bg-coral/10 px-2 py-0.5 rounded-lg">
                   {callCredits}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#8a7a5a] dark:text-[#89aee6]">Used</span>
-                <span className="font-semibold text-slate-700 dark:text-[#e8edf8]">
+                <span className="text-brand-muted">Used</span>
+                <span className="font-semibold text-slate-700 dark:text-brand-heading">
                   {usedCallCredits}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#8a7a5a] dark:text-[#89aee6]">Resets</span>
-                <span className="text-slate-600 dark:text-[#89aee6]">{resetTime}</span>
+                <span className="text-brand-muted">Resets</span>
+                <span className="text-slate-600 dark:text-brand-muted">{resetTime}</span>
               </div>
             </div>
 
-            <hr className="border-[#e8dfc4] dark:border-[#1e2a4a]" />
+            <hr className="border-brand-border" />
 
-            <div className="flex flex-col gap-1 text-[11.5px] text-[#8a7a5a] dark:text-[#4a6fa5]">
+            <div className="flex flex-col gap-1 text-[11.5px] text-brand-muted dark:text-brand-subtle">
               <p>• One credit used only if receiver answers</p>
               <p>• For two unsuccessful calls, 1 credit will be deducted</p>
             </div>

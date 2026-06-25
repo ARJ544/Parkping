@@ -23,7 +23,7 @@ export async function Navigation() {
 
   return (
     <nav className="sticky border-b border-gray-800 dark:border-gray-500 top-0 z-59 w-full rounded-b-sm backdrop-blur-md">
-      <div className="flex h-16 max-w-7xl w-full items-center justify-between px-2">
+      <div className="flex h-16 w-full items-center justify-between px-2">
         <Link href="/" className="flex items-center gap-2 transition hover:opacity-90">
           <Image
             src="/logo.png"
@@ -35,7 +35,7 @@ export async function Navigation() {
           />
           <div className="flex flex-col leading-tight">
             <span className="text-lg font-bold tracking-tight text-foreground">{COMPANY_NAME}</span>
-            <span className="text-[10px] tracking-[0.05em] dark:text-[#f96a3a] text-[#d85a30] opacity-85">
+            <span className="text-[10px] tracking-[0.05em] dark:text-coral text-coral opacity-85">
               The ∘ SigmARJ ∘ Company
             </span>
           </div>

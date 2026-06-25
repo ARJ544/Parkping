@@ -7,6 +7,7 @@ import { deleteTempPhone } from "@/app/actions";
 import MessageOwner from "@/components/my_ui/MessageOwner";
 import { useOwnerSearch } from "@/hooks/useOwnerSearch";
 import { useCallCredits } from "@/hooks/useCallCredits";
+import Link from "next/link";
 
 function Loader() {
   return (
@@ -70,7 +71,7 @@ export default function SearchCar({
     <main className="flex flex-1 justify-center px-4 py-8 transition-colors">
       <div className="layout-content-container flex w-full max-w-2xl flex-col gap-8">
         <div className="flex flex-col items-center text-center">
-          <h1 className="pb-3 text-4xl font-extrabold tracking-tight text-slate-900 dark:text-[#e8edf8]">
+          <h1 className="pb-3 text-4xl font-extrabold tracking-tight text-brand-heading dark:text-brand-heading">
             Contact the Owner
           </h1>
 
@@ -105,19 +106,19 @@ export default function SearchCar({
                 {hasPhoneNumber && is_verified && (
                   <div className="flex flex-col items-end gap-0.5">
                     {temp_phone_number && (
-                      <span className="text-[11px] font-semibold text-slate-700 dark:text-[#e8edf8]">
+                      <span className="text-[11px] font-semibold text-slate-700 dark:text-brand-heading">
                         ...{temp_phone_number}
                       </span>
                     )}
                     {phone_num && !temp_phone_number && (
-                      <span className="text-[11px] font-semibold text-slate-700 dark:text-[#e8edf8]">
+                      <span className="text-[11px] font-semibold text-slate-700 dark:text-brand-heading">
                         ...{phone_num}
                       </span>
                     )}
                     {!temp_phone_number && (
                       <button
                         onClick={() => router.push(`/verify-phone-unknown-user?next=${encodeURIComponent(finderId)}`)}
-                        className="flex items-center gap-1 text-[#d85a30] cursor-pointer text-[9px] font-medium hover:underline"
+                        className="flex items-center gap-1 text-coral cursor-pointer text-[9px] font-medium hover:underline"
                       >
                         <RefreshCcw size={10} />
                         change
@@ -147,6 +148,20 @@ export default function SearchCar({
                   </div>
                 )}
               </>
+            )}
+
+            {!ownerFound && !loading && (
+              <div className="flex flex-col items-center justify-center gap-2 p-6 text-center">
+                <Link
+                  href="/scan"
+                  className="text-sm font-medium text-coral hover:underline"
+                >
+                  Click To Scan
+                </Link>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  No user found with this ID.
+                </p>
+            </div>
             )}
           </div>
         </div>
