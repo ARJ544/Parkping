@@ -73,9 +73,8 @@ export default function RootLayout({
         <SerwistProvider swUrl="/serwist/sw.js">
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
             enableSystem
-            disableTransitionOnChange
+            // disableTransitionOnChange
           >
             <DonationProvider>
               <Suspense fallback={null}>
