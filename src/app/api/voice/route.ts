@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import Twilio from "twilio";
-import { getCaller, getUserByFinderId } from "@/lib/api-helpers";
+import { checkIfUserIsMuted, getCaller, getUserByFinderId } from "@/lib/api-helpers";
 import { supabase } from "@/lib/api-helpers";
 
 const client = Twilio(
@@ -21,9 +21,10 @@ export async function POST() {
       );
     }
 
-    const [callerResult, calleeResult] = await Promise.all([
+    const [callerResult, calleeResult, muteResult] = await Promise.all([
       getCaller(),
       getUserByFinderId(callee_cookie_id),
+      checkIfUserIsMuted(callee_cookie_id),
     ]);
 
     if (!callerResult.success) return callerResult.response;
@@ -31,6 +32,20 @@ export async function POST() {
       return NextResponse.json(
         { error: "User not found. Please Refresh the page." },
         { status: 404 }
+      );
+    }
+
+    if (!muteResult.success) {
+      return NextResponse.json(
+        { error: "Unable to check recipient availability." },
+        { status: 500 }
+      );
+    }
+
+    if (muteResult.isMuted) {
+      return NextResponse.json(
+        { error: "This user has muted incoming calls. You can message them instead." },
+        { status: 403 }
       );
     }
 

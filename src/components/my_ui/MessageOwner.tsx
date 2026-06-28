@@ -193,22 +193,22 @@ export default function MessageOwner({
           <div className={sheet}>
             {/* Drag handle */}
             <div className="flex justify-center pt-3 pb-2">
-              <span className="block w-9 h-1 rounded-full" />
+              <span className="block bg-gray-300 dark:bg-slate-600 w-9 h-1 rounded-full" />
             </div>
 
             {/* Header */}
-            <div className={`flex items-center justify-between px-5 pb-4 ${headerBorder}`}>
-              <span className="text-base font-semibold tracking-tight text-brand-heading dark:text-brand-heading">
+            <div className={`flex items-center justify-between px-5 pb-4 border-b border-gray-200 dark:border-slate-700`}>
+              <span className="text-base font-semibold tracking-tight text-gray-900 dark:text-slate-100">
                 Send a message
               </span>
               <button
                 onClick={closeSheet}
                 className="w-7 h-7 flex items-center justify-center rounded-full
-                    bg-brand-border/60 dark:bg-brand-border
-                    text-brand-muted dark:text-brand-subtle
-                    hover:bg-coral/10 hover:text-coral
-                    dark:hover:bg-coral/10 dark:hover:text-coral
-                    transition-colors"
+              bg-gray-100 dark:bg-slate-700
+              text-gray-500 dark:text-slate-300
+              hover:bg-coral/10 hover:text-coral
+              dark:hover:bg-coral/10 dark:hover:text-coral
+              transition-colors"
               >
                 <X size={13} />
               </button>
@@ -216,7 +216,9 @@ export default function MessageOwner({
 
             {/* Quick messages */}
             <div className="overflow-y-auto flex-1 pb-2">
-              <p className={sectionLabel}>Quick Messages</p>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-gray-400 dark:text-slate-500 px-4 pt-4 pb-2">
+                Quick Messages
+              </p>
               <div className="flex flex-col gap-1.5 px-4">
                 {QUICK_MESSAGES.map((m) => {
                   const active = selected === m;
@@ -228,27 +230,31 @@ export default function MessageOwner({
                         setCustom("");
                       }}
                       className={`flex items-center gap-3 rounded-2xl px-3.5 py-3 text-left text-[13.5px] leading-snug transition-all
-                          ${active
-                        ? "bg-brand-wa/10 border border-brand-wa"
-                          : "bg-brand-card border border-brand-border hover:border-coral/40 dark:hover:border-coral/40"
+                    ${active
+                          ? "bg-brand-wa/10 border border-brand-wa"
+                          : "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 hover:border-coral/50 dark:hover:border-coral/40"
                         }`}
                     >
                       <span className={`w-4 h-4 rounded-full border-[1.5px] shrink-0 flex items-center justify-center transition-all
-                          ${active
-                        ? "bg-brand-wa border-brand-wa"
-                          : "border-brand-border"
+                    ${active
+                          ? "bg-brand-wa border-brand-wa"
+                          : "border-gray-300 dark:border-slate-500"
                         }`}
                       >
                         {active && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
                       </span>
-                      <span className="text-slate-800 dark:text-brand-muted">{m}</span>
+                      <span className={active ? "text-gray-900 dark:text-slate-100 font-medium" : "text-gray-700 dark:text-slate-200"}>
+                        {m}
+                      </span>
                     </button>
                   );
                 })}
               </div>
 
               {/* Custom message */}
-              <p className={sectionLabel}>Custom Message</p>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-gray-400 dark:text-slate-500 px-4 pt-4 pb-2">
+                Custom Message
+              </p>
               <div className="px-4">
                 <textarea
                   rows={3}
@@ -258,16 +264,22 @@ export default function MessageOwner({
                     setCustom(e.target.value);
                     setSelected("");
                   }}
-                  className={textareaStyle}
+                  className="w-full rounded-2xl border border-gray-200 dark:border-slate-600
+              bg-white dark:bg-slate-800
+              text-gray-800 dark:text-slate-100
+              placeholder-gray-400 dark:placeholder-slate-500
+              px-3.5 py-3 text-[13.5px] leading-snug
+              focus:outline-none focus:border-coral/60 dark:focus:border-coral/60
+              resize-none transition-colors"
                 />
               </div>
 
               {/* Feedback */}
               {feedback && (
                 <div className={`flex items-start gap-2 rounded-xl border px-3 mx-4 mt-3 py-2 text-sm
-                    ${feedback.isError
-                    ? "border-red-200 bg-red-50 dark:border-red-900/40 dark:bg-red-900/20 text-red-700 dark:text-red-300"
-                    : "border-green-200 bg-green-50 dark:border-green-900/40 dark:bg-green-900/20 text-green-700 dark:text-green-300"
+              ${feedback.isError
+                    ? "border-red-200 bg-red-50 text-red-700 dark:border-red-700/60 dark:bg-red-900/30 dark:text-red-200"
+                    : "border-green-200 bg-green-50 text-green-700 dark:border-green-700/60 dark:bg-green-900/30 dark:text-green-200"
                   }`}
                 >
                   <span className="mt-0.5 shrink-0">{feedback.isError ? "✕" : "✓"}</span>
@@ -278,7 +290,6 @@ export default function MessageOwner({
               {/* Actions */}
               <div className="px-4 pt-4 flex flex-col gap-3">
                 <div className="flex gap-2 items-start">
-
                   <div className="flex-1 flex flex-col gap-1">
                     <button
                       disabled={!activeMsg || sending || calling}
@@ -287,7 +298,7 @@ export default function MessageOwner({
                     >
                       {sending ? "Sending..." : "Send Message"}
                     </button>
-                    <p className="text-center text-[10px] text-brand-muted dark:text-brand-subtle tracking-wide">
+                    <p className="text-center text-[10px] text-gray-400 dark:text-slate-400 tracking-wide">
                       No verification required
                     </p>
                   </div>
@@ -316,11 +327,11 @@ export default function MessageOwner({
                     <button
                       onClick={() => setShowCredits(true)}
                       className="inline-flex items-center gap-1.5 text-[11px] font-medium
-                          text-brand-muted
-                          hover:text-brand-heading dark:hover:text-brand-heading
-                          bg-brand-border/60 dark:bg-brand-border
-                          hover:bg-coral/10 dark:hover:bg-coral/10
-                          px-2.5 py-1 rounded-full transition-colors"
+                    text-gray-500 dark:text-slate-400
+                    hover:text-gray-900 dark:hover:text-slate-100
+                    bg-gray-100 dark:bg-slate-700
+                    hover:bg-coral/10 dark:hover:bg-coral/10
+                    px-2.5 py-1 rounded-full transition-colors"
                     >
                       <span className="font-semibold text-coral">
                         {creditsLoading ? "..." : callCredits}

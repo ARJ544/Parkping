@@ -345,15 +345,71 @@ export async function refreshUserToken(userId: string) {
 // This function is used to add a credit to the caller after a failed call attempt
 export async function setNotCalling(caller: string) {
   const { error } = await supabase
-    .from("calling_credits")
-    .update({ is_calling: false })
-    .eq("phone_num", caller);
-
+  .from("calling_credits")
+  .update({ is_calling: false })
+  .eq("phone_num", caller);
+  
   if (error) {
     console.error("setNotCalling failed:", error);
   }
 }
 
+/**
+ * Returns whether the user is currently muted.
+ */
+export async function checkIfUserIsMuted(finder_id: string) {
+  try {
+    const { data, error } = await supabase
+      .from("simplified_users")
+      .select("mute_call_till")
+      .eq("finder_id", finder_id)
+      .single();
+
+    if (error) {
+      return { success: false, error };
+    }
+
+    const muteTill = data.mute_call_till;
+
+    if (!muteTill) {
+      return {
+        success: true,
+        isMuted: false,
+      };
+    }
+
+    if (muteTill.toLowerCase() === "forever") {
+      return {
+        success: true,
+        isMuted: true,
+      };
+    }
+
+    const endTime = Number(muteTill);
+
+    if (Number.isNaN(endTime) || endTime <= Date.now()) {
+      await supabase
+        .from("simplified_users")
+        .update({ mute_call_till: null })
+        .eq("finder_id", finder_id);
+
+      return {
+        success: true,
+        isMuted: false,
+      };
+    }
+
+    return {
+      success: true,
+      isMuted: true,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error,
+    };
+  }
+}
 
 /**
  * Verifies password against hashed password
