@@ -89,7 +89,7 @@ export default function SignupClient() {
         <button
           onClick={handleCustomClick}
           disabled={loading}
-          className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-brand-heading dark:hover:bg-slate-200 text-white font-semibold py-3 rounded-lg transition active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-brand-navy dark:hover:bg-slate-200 text-white font-semibold py-3 rounded-lg transition active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Verifying..." : "Verify Phone Number"}
         </button>
