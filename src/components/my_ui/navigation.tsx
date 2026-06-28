@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { getAllCookie } from "@/app/actions";
 import Image from "next/image";
 import { COMPANY_NAME } from "@/config/company";
-import ProfileDropdown from "@/components/my_ui/profile-dropdown";
+import ProfileDropdown from "@/components/profile/profile-dropdown";
 import { authenticateUser } from "@/lib/api-helpers";
 
 export async function Navigation() {
@@ -12,12 +12,14 @@ export async function Navigation() {
 
   let bsuid: string | undefined;
   let token: string | undefined;
+  let mute_call_till: string | undefined;
 
   if (loggedin) {
     const auth = await authenticateUser(false);
     if (auth.success) {
       bsuid = auth.user.bsuid ?? undefined;
       token = auth.user.token ?? undefined;
+      mute_call_till = auth.user.mute_call_till ?? undefined;
     }
   }
 
@@ -48,7 +50,7 @@ export async function Navigation() {
             </Link>
           )}
           {loggedin && (
-            <ProfileDropdown isVerified={isVerified} bsuid={bsuid} token={token} />
+            <ProfileDropdown isVerified={isVerified} bsuid={bsuid} token={token} mute_call_till={mute_call_till} />
           )}
         </div>
       </div>

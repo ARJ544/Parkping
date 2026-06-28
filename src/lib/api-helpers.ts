@@ -15,6 +15,7 @@ export interface AuthenticatedUser {
   finder_id: string;
   token: string;
   bsuid: string;
+  mute_call_till: string;
 }
 
 /**
