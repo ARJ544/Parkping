@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { Unbounded } from "next/font/google";
 import { useQRGeneration } from "@/hooks/useQRGeneration";
-import QRPreview from "@/components/my_ui/QRPreview";
-import TemplateSelector from "@/components/my_ui/TemplateSelector";
-import QRActionButtons from "@/components/my_ui/QRActionButtons";
+import QRPreview from "@/components/qr/QRPreview";
+import TemplateSelector from "@/components/qr/TemplateSelector";
+import QRActionButtons from "@/components/qr/QRActionButtons";
 
 const unbounded = Unbounded({
   subsets: ["latin"],
