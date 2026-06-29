@@ -113,7 +113,7 @@ export default function ProfileDropdown({ isVerified, bsuid, token, mute_call_ti
         <DropdownMenuContent
           align="end"
           sideOffset={8}
-          className="z-50 w-64 rounded-2xl p-0 overflow-hidden border border-brand-border bg-brand-card/95 dark:bg-brand-navy/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 duration-150"
+          className="z-60 w-64 rounded-2xl p-0 overflow-hidden border border-brand-border bg-brand-card/95 dark:bg-brand-navy/95 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.10)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 duration-150"
         >
           {/* Profile Header */}
           <div className="relative px-4 pt-4 pb-3 overflow-hidden">

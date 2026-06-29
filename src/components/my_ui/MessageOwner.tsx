@@ -110,32 +110,23 @@ export default function MessageOwner({
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error.message || "Failed to send message");
+        throw new Error(data.error.message || "Failed to fetch");
       }
 
-      // Remove below 117-121 after early may(tbd)
       setFeedback({
-        msg: "Message successfully sent to WhatsApp",
+        msg: "You will be Redirected to send the message via WhatsApp.",
         isError: false,
       });
 
-      // Uncomment after early may(tbd)
-      // if (!res.ok) {
-      //   throw new Error(data.error.message || "Failed to fetch");
-      // }
-
-      // setFeedback({
-      //   msg: "You will be Redirected to send the message via WhatsApp.",
-      //   isError: false,
-      // });
-      // setTimeout(() => {
-      //   if (data.waLink) {
-      //     window.open(data.waLink, "_blank");
-      //   }
-      // }, 1500);
       setTimeout(() => {
         setShouldOpenDonationModal(true);
-      }, 500);
+      }, 1400);
+
+      setTimeout(() => {
+        if (data.waLink) {
+          window.open(data.waLink, "_blank");
+        }
+      }, 1450);
 
     } catch (error: any) {
       console.error("Error:", error);

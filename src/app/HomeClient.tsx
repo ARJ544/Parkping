@@ -1,6 +1,6 @@
 'use client'
 
-import { Car, Bike, Briefcase, Tag, Laptop, Package, ArrowRight, ScanQrCodeIcon, ChevronUp, ChevronDown } from "lucide-react";
+import { Car, Bike, Briefcase, Tag, Laptop, Package, ArrowRight, ScanQrCodeIcon, ChevronUp, ChevronDown, CheckCircle, LucideMessageCircleMore } from "lucide-react";
 import { Unbounded } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -245,63 +245,73 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
       {/* WHATSAPP MODAL */}
       {showConnectModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-          <div className="w-full max-w-sm bg-brand-card dark:bg-brand-navy rounded-2xl p-4 shadow-xl border border-brand-border">
+          <div className="w-full max-w-sm bg-brand-card dark:bg-brand-navy rounded-2xl p-5 shadow-xl border border-brand-border">
 
             {/* Header */}
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="h-9 w-9 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 text-base">
-                💬
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-10 w-10 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 text-xl">
+                <LucideMessageCircleMore />
               </div>
+
               <div>
-                <h2 className="text-sm font-semibold text-brand-heading dark:text-brand-heading leading-tight">
-                  Connect WhatsApp
+                <h2 className="text-base font-semibold text-brand-heading dark:text-brand-heading">
+                  Link Your WhatsApp
                 </h2>
-                <p className="text-[12px] text-pink-500 dark:text-pink-400 underline">
-                  Required to receive messages from <strong>Finders</strong>
+
+                <p className="text-xs text-brand-muted mt-0.5">
+                  Receive messages from Finders directly on WhatsApp.
                 </p>
               </div>
             </div>
 
-            {/* Highlight Box */}
-            <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-xl px-3 py-2 mb-3">
-              <p className="text-[11px] text-green-700 dark:text-green-300 leading-relaxed">
-                Messages will be delivered on your WhatsApp until <span className="font-semibold">early May (TBD)</span>. After that, only connected users will receive messages.
-                <br />
-                <span className="block mb-0.5 mt-0.5" />
-                <span className="opacity-75">NOTE: You can still connect later, but may miss messages between that time.</span>
+            {/* Info Box */}
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-3 mb-4">
+              <p className="text-xs leading-relaxed text-green-700 dark:text-green-300">
+                To receive messages from <span className="font-semibold">Finders</span>,
+                you need to link your WhatsApp account once.
+                It only takes a few seconds.
               </p>
             </div>
 
-            {/* Key Points */}
-            <div className="space-y-1.5 mb-3 text-[11px] text-brand-muted">
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">✔</span>
-                <p>Use the <span className="font-medium text-brand-heading dark:text-brand-heading">same number</span> you signed in with.</p>
+            {/* Steps */}
+            <div className="space-y-2 mb-5 text-xs text-brand-muted">
+
+              <div className="flex gap-2">
+                <CheckCircle width={20} height={20} />
+                <p>
+                  Use the <span className="font-medium text-brand-heading dark:text-brand-heading">
+                    same WhatsApp number
+                  </span>{" "}
+                  that you used to sign in.
+                </p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">✔</span>
-                <p>Connect or disconnect via the <span className="font-medium text-brand-heading dark:text-brand-heading">profile menu</span> (top-right)</p>
+
+              <div className="flex gap-2">
+                <CheckCircle width={20} height={20} />
+                <p>
+                  After linking, Finders can send you updates and messages on WhatsApp.
+                </p>
               </div>
+
+              <div className="flex gap-2">
+                <CheckCircle width={20} height={20} />
+                <p>
+                  You can unlink or relink your WhatsApp anytime from your profile.
+                </p>
+              </div>
+
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col gap-1.5">
-              <Button
-                onClick={() => {
-                  handleConnectWhatsApp();
-                  setShowConnectModal(false);
-                }}
-                className="w-full bg-green-500 hover:bg-green-600 text-white text-xs font-medium h-9 rounded-xl shadow-sm hover:-translate-y-0.5 transition-all duration-200"
-              >
-                Connect WhatsApp
-              </Button>
-              <button
-                onClick={() => setShowConnectModal(false)}
-                className="text-[11px] cursor-pointer text-brand-muted hover:text-[#5a4a2a] dark:text-brand-muted dark:hover:text-brand-heading transition py-0.5"
-              >
-                Maybe later
-              </button>
-            </div>
+            {/* Button */}
+            <Button
+              onClick={() => {
+                handleConnectWhatsApp();
+                setShowConnectModal(false);
+              }}
+              className="w-full bg-green-500 hover:bg-green-600 text-white text-sm font-medium h-10 rounded-xl shadow-sm transition-all"
+            >
+              Link My WhatsApp
+            </Button>
 
           </div>
         </div>
@@ -309,4 +319,3 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
     </div>
   );
 }
-
