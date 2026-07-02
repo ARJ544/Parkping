@@ -313,6 +313,14 @@ export default function HomeClient({ loggedin, bsuid, token }: { loggedin: boole
               Link My WhatsApp
             </Button>
 
+            <Button
+              onClick={() => setShowConnectModal(false)}
+              variant="outline"
+              className="w-full mt-3 text-sm font-medium h-10 rounded-xl"
+            >
+              I'll link later
+            </Button>
+
           </div>
         </div>
       )}
