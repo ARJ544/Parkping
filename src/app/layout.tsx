@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${chiron.className} bg-brand-page selection:bg-teal-300 selection:text-teal-950`}
+        className={`${chiron.className} bg-brand-page selection:bg-coral/30 selection:text-coral`}
       >
         <SerwistProvider swUrl="/serwist/sw.js">
           <ThemeProvider

@@ -34,10 +34,9 @@ export default function SearchCar({
   const queryFinderId = searchParams.get("finder_id");
 
   const finderId = queryFinderId ?? "";
-  
-  const { loading, message, ownerFound, isError } = useOwnerSearch(queryFinderId);
-  const { callCredits, usedCallCredits, creditsLoading, refreshCredits } = useCallCredits();
 
+  const { loading, message, ownerFound, isError } = useOwnerSearch(queryFinderId);
+  const { callCredits, usedCallCredits, creditsLoading, refreshCredits, errorMessage } = useCallCredits();
 
   const resetTime = useMemo(() => {
     const now = new Date();
@@ -58,7 +57,6 @@ export default function SearchCar({
     const result = await res.json();
 
     if (!res.ok) {
-      await deleteTempPhone();
       throw new Error(result.error || "Something went wrong");
     }
 
@@ -100,6 +98,7 @@ export default function SearchCar({
                   callCredits={callCredits}
                   usedCallCredits={usedCallCredits}
                   creditsLoading={creditsLoading}
+                  creditsFetchErrorMessage={{ msg: errorMessage, isError: Boolean(errorMessage) }}
                   resetTime={resetTime}
                 />
 
@@ -128,9 +127,7 @@ export default function SearchCar({
                 )}
 
                 {(temp_phone_number || temp_phone_id) && (
-                  <div className="rounded-2xl py-4 px-4 text-sm flex items-center justify-between border
-                      bg-amber-50 dark:bg-amber-900/20
-                      border-amber-200 dark:border-amber-800">
+                  <div className="rounded-full py-4 px-4 text-sm flex items-center justify-between border bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800">
                     <p className="text-amber-700 dark:text-amber-300">
                       Temp number active · removed in <strong>1h</strong>
                     </p>
@@ -161,11 +158,11 @@ export default function SearchCar({
                 <p className="text-sm text-slate-500 dark:text-slate-400">
                   No user found with this ID.
                 </p>
-            </div>
+              </div>
             )}
           </div>
         </div>
       </div>
     </main>
-    );
+  );
 }

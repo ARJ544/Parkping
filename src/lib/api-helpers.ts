@@ -155,7 +155,7 @@ export async function getCaller(
       if (!userData || error) {
         return {
           success: false, response: NextResponse.json(
-            { error: "You are not verified! Remove temporary phone and verify phone again" },
+            { error: "Your session is expired! Remove temporary phone and verify phone again to make a call" },
             { status: 500 },
           )
         };
@@ -176,7 +176,7 @@ export async function getCaller(
     if (!userIdToUse) {
       return {
         success: false,
-        response: NextResponse.json({ error: "Verify yourself to make a call" }, { status: 401 }),
+        response: NextResponse.json({ error: "Verify phone to make a call" }, { status: 401 }),
       };
     }
 

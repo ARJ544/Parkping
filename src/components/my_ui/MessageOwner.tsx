@@ -13,18 +13,10 @@ const QUICK_MESSAGES = [
 ];
 
 const triggerBtn =
-  "h-12 w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-black dark:hover:bg-slate-200 text-white font-semibold rounded-3xl transition active:scale-[0.97]";
+  "h-12 w-full bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:text-black dark:hover:bg-slate-200 text-white font-semibold rounded-full transition active:scale-[0.97]";
 
 const sheet =
   "relative w-full bg-brand-card dark:bg-slate-900 rounded-t-2xl animate-slideUp max-h-[90dvh] flex flex-col border-t border-slate-100 dark:border-slate-800";
-
-const headerBorder = "border-b border-slate-100 dark:border-slate-800";
-
-const sectionLabel =
-  "text-[11px] font-medium uppercase tracking-widest text-slate-400 dark:text-slate-500 px-5 pt-4 pb-2";
-
-const textareaStyle =
-  "w-full text-[13.5px] text-slate-800 dark:text-slate-200 rounded-[14px] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3.5 py-3 outline-none focus:border-brand-wa resize-none transition-colors placeholder:text-slate-400 dark:placeholder:text-slate-600 font-[inherit] leading-relaxed";
 
 const sendBtn =
   "w-full flex items-center justify-center gap-2 bg-brand-wa hover:bg-[#1ebe5d] disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-600 text-white text-[14.5px] font-medium py-3.5 rounded-full transition-all active:scale-[0.98] disabled:cursor-not-allowed";
@@ -42,6 +34,7 @@ export interface MessageOwnerProps {
   callCredits?: number;
   usedCallCredits?: number;
   creditsLoading?: boolean;
+  creditsFetchErrorMessage?: { msg: string; isError: boolean };
   resetTime?: string;
 }
 
@@ -54,20 +47,30 @@ export default function MessageOwner({
   callCredits = 0,
   usedCallCredits = 0,
   creditsLoading = false,
+  creditsFetchErrorMessage = { msg: "", isError: false },
   resetTime = "",
 }: MessageOwnerProps) {
   const [open, setOpen] = useState(false);
   const [shouldOpenDonationModal, setShouldOpenDonationModal] = useState(false);
   const [selected, setSelected] = useState("");
-  const [custom, setCustom] = useState("");
+  const [custom, setCustom] = useState("I had found your lost item. Please reply me to contact...");
   const [calling, setCalling] = useState(false);
   const [sending, setSending] = useState(false);
   const [showCredits, setShowCredits] = useState(false);
-  const [feedback, setFeedback] = useState<{ msg: string; isError: boolean } | null>(null);
+  const [feedback, setFeedback] = useState<{ msg: string; isError: boolean } | null>(creditsFetchErrorMessage);
 
   useEffect(() => {
     if (autoOpen) setOpen(true);
   }, [autoOpen]);
+
+  useEffect(() => {
+    if (creditsFetchErrorMessage?.msg && creditsFetchErrorMessage.isError) {
+      setFeedback({
+        msg: creditsFetchErrorMessage.msg,
+        isError: true,
+      });
+    }
+  }, [creditsFetchErrorMessage?.msg, creditsFetchErrorMessage?.isError]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -83,7 +86,15 @@ export default function MessageOwner({
     setCustom("");
     setSending(false);
     setShowCredits(false);
-    setFeedback(null);
+
+    if (creditsFetchErrorMessage?.msg && creditsFetchErrorMessage.isError) {
+      setFeedback({
+        msg: creditsFetchErrorMessage.msg,
+        isError: true,
+      });
+    } else {
+      setFeedback(null);
+    }
   }
 
   function closeSheet() {
@@ -194,12 +205,7 @@ export default function MessageOwner({
               </span>
               <button
                 onClick={closeSheet}
-                className="w-7 h-7 flex items-center justify-center rounded-full
-              bg-gray-100 dark:bg-slate-700
-              text-gray-500 dark:text-slate-300
-              hover:bg-coral/10 hover:text-coral
-              dark:hover:bg-coral/10 dark:hover:text-coral
-              transition-colors"
+                className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-slate-300 hover:bg-coral/10 hover:text-coral dark:hover:bg-coral/10 dark:hover:text-coral transition-colors"
               >
                 <X size={13} />
               </button>
@@ -220,7 +226,7 @@ export default function MessageOwner({
                         setSelected(active ? "" : m);
                         setCustom("");
                       }}
-                      className={`flex items-center gap-3 rounded-2xl px-3.5 py-3 text-left text-[13.5px] leading-snug transition-all
+                      className={`flex items-center gap-3 rounded-full px-3.5 py-3 text-left text-[13.5px] leading-snug transition-all
                     ${active
                           ? "bg-brand-wa/10 border border-brand-wa"
                           : "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 hover:border-coral/50 dark:hover:border-coral/40"
@@ -255,19 +261,13 @@ export default function MessageOwner({
                     setCustom(e.target.value);
                     setSelected("");
                   }}
-                  className="w-full rounded-2xl border border-gray-200 dark:border-slate-600
-              bg-white dark:bg-slate-800
-              text-gray-800 dark:text-slate-100
-              placeholder-gray-400 dark:placeholder-slate-500
-              px-3.5 py-3 text-[13.5px] leading-snug
-              focus:outline-none focus:border-coral/60 dark:focus:border-coral/60
-              resize-none transition-colors"
+                  className="w-full rounded-4xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 px-3.5 py-3 text-[13.5px] leading-snug focus:outline-none focus:border-coral/60 dark:focus:border-coral/60 resize-none transition-colors"
                 />
               </div>
 
               {/* Feedback */}
-              {feedback && (
-                <div className={`flex items-start gap-2 rounded-xl border px-3 mx-4 mt-3 py-2 text-sm
+              {feedback && (feedback.msg !== "") && (
+                <div className={`flex items-start gap-2 rounded-full border px-3 mx-4 mt-3 py-2 text-sm
               ${feedback.isError
                     ? "border-red-200 bg-red-50 text-red-700 dark:border-red-700/60 dark:bg-red-900/30 dark:text-red-200"
                     : "border-green-200 bg-green-50 text-green-700 dark:border-green-700/60 dark:bg-green-900/30 dark:text-green-200"
@@ -327,7 +327,7 @@ export default function MessageOwner({
                       <span className="font-semibold text-coral">
                         {creditsLoading ? "..." : callCredits}
                       </span>
-                      credits
+                      credits left
                       <Info size={11} />
                     </button>
                   </div>
