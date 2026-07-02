@@ -71,7 +71,7 @@ export const authenticateUser = cache(async (requireLogin: boolean = true,): Pro
         success: false,
         response: NextResponse.json(
           {
-            error: "User Not Found",
+            error: "User not found or Session expired! Login back",
           },
           { status: 500 },
         ),
@@ -83,7 +83,7 @@ export const authenticateUser = cache(async (requireLogin: boolean = true,): Pro
         success: false,
         response: NextResponse.json(
           {
-            error: "User not found",
+            error: "User not found or Session expired! Login back",
           },
           { status: 404 },
         ),
@@ -190,7 +190,7 @@ export async function getCaller(
       return {
         success: false,
         response: NextResponse.json(
-          { error: "User not found" },
+          { error: "User not found or Session expired! Login back" },
           { status: 404 },
         ),
       };
