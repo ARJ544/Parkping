@@ -5,18 +5,17 @@ import { redirect } from "next/navigation";
 
 type UserCookie = {
   loggedin: boolean;
-  secure_validator: string;
+  session_id: string;
   id?: string;
   phone_num?: string;
-  finder_id?: string;
   verified: boolean;
 };
 
 export async function IsLoggedIn() {
   const cookieStore = await cookies();
   const id = cookieStore.get("id");
-  const secure_validator = cookieStore.get("secure_validator");
-  return Boolean(id && secure_validator);
+  const session_id = cookieStore.get("session_id");
+  return Boolean(id && session_id);
 }
 
 export async function IsVerified() {
@@ -31,18 +30,13 @@ export async function getTempPhoneId() {
   return temp_phone_id?.value;
 }
 
-export async function deleteShowSecretCode() {
-  const cookieStore = await cookies();
-  cookieStore.delete("show_secret_code");
-}
-
 export async function setAllCookie(user: Partial<UserCookie>) {
   const cookieStore = await cookies();
 
   const SEVEN_DAYS = 60 * 60 * 24 * 7;
 
-  if (user.secure_validator)
-    cookieStore.set("secure_validator", String(user.secure_validator), {
+  if (user.session_id)
+    cookieStore.set("session_id", String(user.session_id), {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
@@ -68,16 +62,7 @@ export async function setAllCookie(user: Partial<UserCookie>) {
       maxAge: SEVEN_DAYS,
     });
 
-  if (user.finder_id)
-    cookieStore.set("finder_id", user.finder_id, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "lax",
-      path: "/",
-      maxAge: SEVEN_DAYS,
-    });
-
-  cookieStore.set("loggedin", String(user.loggedin ?? (Boolean(user.id && user.secure_validator))), {
+  cookieStore.set("loggedin", String(user.loggedin ?? (Boolean(user.id && user.session_id))), {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
@@ -96,11 +81,27 @@ export async function setAllCookie(user: Partial<UserCookie>) {
 
 export async function deleteAllCookie() {
   const cookieStore = await cookies();
+  const id = cookieStore.get("id")?.value;
+
+  if (id) {
+    const { supabase } = await import("@/lib/api-helpers");
+
+    await supabase
+      .from("simplified_users")
+      .update({
+        session_id: null,
+        session_expires_at: null,
+      })
+      .eq("id", id);
+  }
+
   cookieStore.getAll().forEach((cookie) => {
     cookieStore.delete(cookie.name);
   });
-  redirect('/signin');
+
+  redirect("/signin");
 }
+
 export async function deleteTempPhone() {
   const cookieStore = await cookies();
   cookieStore.delete("temp_phone_id");
@@ -111,15 +112,14 @@ export async function getAllCookie(): Promise<UserCookie> {
   const cookieStore = await cookies();
   const get = (name: string) => cookieStore.get(name)?.value;
 
-  const loggedin = Boolean(get("id") && get("secure_validator"));
+  const loggedin = Boolean(get("id") && get("session_id"));
   const verified = get("verified") === "true";
 
   return {
     loggedin,
     verified,
-    secure_validator: get("secure_validator") || "",
+    session_id: get("session_id") || "",
     id: get("id"),
     phone_num: get("phone_num"),
-    finder_id: get("finder_id"),
   };
 }

@@ -8,7 +8,7 @@ export async function muteCalls(value: number | "forever") {
   if (!authResult.success) {
     return {
       success: false,
-      message: "Unable to authorize.",
+      message: await authResult.response.json().then((resp) => resp.error),
     };
   }
 
@@ -46,7 +46,7 @@ export async function unmuteCalls() {
   if (!authResult.success) {
     return {
       success: false,
-      message: "Unable to authorize.",
+      message: await authResult.response.json().then((resp) => resp.error),
     };
   }
 

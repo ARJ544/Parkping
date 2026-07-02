@@ -11,54 +11,68 @@ export const supabase = createClient(
 export interface AuthenticatedUser {
   id: string;
   phone_num: string;
-  created_at: string;
   finder_id: string;
   token: string;
   bsuid: string;
   mute_call_till: string;
+  session_id: string;
+  session_expires_at: string;
 }
 
 /**
- * Authenticates user from cookies and validates against database
- * Checks cookies and verifies phone_num and created_at match database
+ * Authenticates user from cookies and validates against database.
+ * Checks cookies and verifies:
+ * - User exists
+ * - Session ID matches
+ * - Session is not expired
+ * - Phone number matches (last 4 digits)
  */
-export const authenticateUser = cache(async (
-  requireLogin: boolean = true,
-): Promise<{ success: false; response: NextResponse } | { success: true; user: AuthenticatedUser, shouldSetCookie?: boolean }> => {
+export const authenticateUser = cache(async (requireLogin: boolean = true,): Promise<| { success: false; response: NextResponse } | { success: true; user: AuthenticatedUser; shouldSetCookie?: boolean; }> => {
   try {
-    const { id, phone_num, secure_validator } = await (
+    const { id, phone_num, session_id } = await (
       await import("@/app/actions")
     ).getAllCookie();
 
-    if (requireLogin && (!id || !secure_validator)) {
-      return {
-        success: false,
-        response: NextResponse.json({ error: "Login first" }, { status: 401 }),
-      };
-    }
-
-    if (!id || !phone_num || !secure_validator) {
+    if (requireLogin && (!id || !session_id)) {
       return {
         success: false,
         response: NextResponse.json(
-          { success: false, error: "Unauthorized" },
+          { error: "Login first" },
           { status: 401 },
         ),
       };
     }
-    // Fetch user from database
+
+    if (!id || !phone_num || !session_id) {
+      return {
+        success: false,
+        response: NextResponse.json(
+          {
+            success: false,
+            error: "Unauthorized",
+          },
+          { status: 401 },
+        ),
+      };
+    }
+
+    // Fetch user only if session matches
     const { data: user, error } = await supabase
       .from("simplified_users")
       .select("*")
       .eq("id", id)
+      .eq("session_id", session_id)
       .single();
 
     if (error) {
       console.log("User fetch failed:", error);
+
       return {
         success: false,
         response: NextResponse.json(
-          { error: "Internal server error" },
+          {
+            error: "User Not Found",
+          },
           { status: 500 },
         ),
       };
@@ -68,40 +82,58 @@ export const authenticateUser = cache(async (
       return {
         success: false,
         response: NextResponse.json(
-          { error: "User not found" },
+          {
+            error: "User not found",
+          },
           { status: 404 },
         ),
       };
     }
 
-    if (
-      (user.phone_num as string).slice(-4) !== phone_num.slice(-4) ||
-      (user.created_at as string) !== secure_validator
-    ) {
+    // Check session expiry
+    if (!user.session_expires_at || new Date(user.session_expires_at).getTime() <= Date.now()) {
       return {
         success: false,
         response: NextResponse.json(
-          { error: "Unauthorized access" },
+          {
+            error: "Session expired! Login again",
+          },
           { status: 401 },
         ),
       };
     }
 
-    if (user.bsuid) {
-      return { success: true, user, shouldSetCookie: true };
+    // Verify phone number (last 4 digits)
+    if (user.phone_num.slice(-4) !== phone_num.slice(-4)) {
+      return {
+        success: false,
+        response: NextResponse.json(
+          {
+            error: "Unauthorized access",
+          },
+          { status: 401 },
+        ),
+      };
     }
 
-    return { success: true, user };
+    return {
+      success: true,
+      user,
+    };
+
   } catch (error) {
     return {
       success: false,
       response: NextResponse.json(
-        { error: "Internal server error" },
+        {
+          error: "Internal server error",
+        },
         { status: 500 },
       ),
     };
   }
-});
+},
+);
 
 /**
  * Gets the caller phone number from temp_phone cookie or authenticated user
@@ -292,26 +324,6 @@ export async function getUserByPhone(phoneNum: string) {
     return { success: false, error };
   }
 }
-/**
- * Fetches user by phone number
- */
-export async function getTempPhoneNumById(temp_phone_id: string) {
-  try {
-    const { data, error } = await supabase
-      .from("temporary_phone")
-      .select("temp_phone")
-      .eq("id", temp_phone_id)
-      .maybeSingle();
-
-    if (error) {
-      return { success: false, error };
-    }
-
-    return { success: true, user: data };
-  } catch (error) {
-    return { success: false, error };
-  }
-}
 
 // Generates secret code for user and updates in database
 export function generateSecretCode() {
@@ -345,10 +357,10 @@ export async function refreshUserToken(userId: string) {
 // This function is used to add a credit to the caller after a failed call attempt
 export async function setNotCalling(caller: string) {
   const { error } = await supabase
-  .from("calling_credits")
-  .update({ is_calling: false })
-  .eq("phone_num", caller);
-  
+    .from("calling_credits")
+    .update({ is_calling: false })
+    .eq("phone_num", caller);
+
   if (error) {
     console.error("setNotCalling failed:", error);
   }
@@ -408,32 +420,5 @@ export async function checkIfUserIsMuted(finder_id: string) {
       success: false,
       error,
     };
-  }
-}
-
-/**
- * Verifies password against hashed password
- */
-export async function verifyPassword(
-  inputPassword: string,
-  hashedPassword: string,
-): Promise<boolean> {
-  try {
-    const bcrypt = (await import("bcrypt")).default;
-    return await bcrypt.compare(inputPassword, hashedPassword);
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Hashes a password
- */
-export async function hashPassword(password: string): Promise<string> {
-  try {
-    const bcrypt = (await import("bcrypt")).default;
-    return await bcrypt.hash(password, 10);
-  } catch {
-    throw new Error("Failed to hash password");
   }
 }

@@ -9,9 +9,9 @@ export const metadata = {
 
 export default async function GenerateQR() {
   const isLoggedIn = await IsLoggedIn();
-  let { id, secure_validator } = await getAllCookie();
+  let { id, session_id } = await getAllCookie();
 
-  if (!isLoggedIn || !secure_validator || !id) {
+  if (!isLoggedIn || !session_id || !id) {
     redirect("/signin");
   }
 

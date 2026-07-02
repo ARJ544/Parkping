@@ -16,9 +16,10 @@ export function useDeleteAccount() {
       const res = await fetch("/api/delete-account", {
         method: "DELETE",
       });
+      const result = await res.json();
 
       if (!res.ok) {
-        throw new Error("Failed to delete account! Refresh Page again");
+        throw new Error(result.error || "Failed to delete account! Refresh Page again or Login back");
       }
       setMessage("Account deleted successfully you may refresh page!");
       router.refresh();

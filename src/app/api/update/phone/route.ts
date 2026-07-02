@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     .update({ phone_num: verifiedPhone })
     .eq("id", authResult.user.id)
     .select(
-      "id, phone_num, finder_id, created_at",
+      "id, phone_num, session_id",
     )
     .single();
 
@@ -50,9 +50,8 @@ export async function POST(req: Request) {
   await setAllCookie({
     loggedin: true,
     id: updateData.id,
-    secure_validator: updateData.created_at,
+    session_id: updateData.session_id,
     phone_num: updateData.phone_num,
-    finder_id: updateData.finder_id,
     verified: true,
   });
 

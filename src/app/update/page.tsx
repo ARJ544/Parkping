@@ -8,9 +8,9 @@ export const metadata = {
 
 export default async function Update() {
   const isLoggedIn = await IsLoggedIn();
-  const secure_validator = (await getAllCookie()).secure_validator;
+  const session_id = (await getAllCookie()).session_id;
 
-  if (!isLoggedIn || !secure_validator) {
+  if (!isLoggedIn || !session_id) {
     redirect("/signin");
   }
 
