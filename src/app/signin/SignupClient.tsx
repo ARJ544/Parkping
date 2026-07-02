@@ -11,7 +11,7 @@ export default function SignupClient() {
     await revalidateLayout();
     await new Promise((resolve) => setTimeout(resolve, 100));
 
-    router.replace("/qr");
+    router.replace("/");
   };
 
   return (

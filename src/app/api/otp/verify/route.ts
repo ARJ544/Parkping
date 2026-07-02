@@ -4,7 +4,7 @@ import { supabase } from "@/lib/api-helpers";
 import { validatePhoneNumber, verifyOTP } from "@/lib/otp-helper";
 import { setAllCookie } from "@/app/actions";
 import { IsVerified } from "@/app/actions";
-import crypto from "crypto";
+import crypto, { randomUUID } from "crypto";
 
 const ONE_HOUR = 60 * 60;
 const MAX_OTP_ATTEMPTS = 5;
@@ -291,17 +291,31 @@ export async function POST(req: Request) {
 
     const cookieStore = await cookies();
 
+    const session_id = randomUUID();
+    const session_expires_at = new Date(
+      Date.now() + 7 * 24 * 60 * 60 * 1000
+    ).toISOString();
+
     if (route === "verify-phone-unknown-user") {
+      // Delete
+      await supabase
+        .from("temporary_phone")
+        .delete()
+        .eq("temp_phone", formattedPhone);
+
+      // Create
       const { data: tempPhoneData, error: tempPhoneError } = await supabase
         .from("temporary_phone")
-        .upsert({ temp_phone: formattedPhone }, { onConflict: "temp_phone" })
+        .insert({
+          temp_phone: formattedPhone,
+        })
         .select("id, temp_phone")
         .single();
 
       if (tempPhoneError || !tempPhoneData) {
-        console.error("Temporary phone upsert failed:", tempPhoneError);
+        console.error("Temporary phone insert failed:", tempPhoneError);
         return NextResponse.json(
-          { error: "Failed to save phone number" },
+          { error: tempPhoneError?.message ?? "Failed" },
           { status: 500 }
         );
       }
@@ -350,9 +364,9 @@ export async function POST(req: Request) {
 
       const { data: updatedUser, error: updateError } = await supabase
         .from("simplified_users")
-        .update({ phone_num: formattedPhone })
+        .update({ phone_num: formattedPhone, session_id: session_id, session_expires_at: session_expires_at })
         .eq("id", id)
-        .select("id, phone_num, created_at, finder_id")
+        .select("id, phone_num, session_id")
         .single();
 
       if (updateError) {
@@ -372,9 +386,8 @@ export async function POST(req: Request) {
       await setAllCookie({
         loggedin: true,
         id: updatedUser.id,
-        secure_validator: updatedUser.created_at,
+        session_id: session_id,
         phone_num: updatedUser.phone_num,
-        finder_id: updatedUser.finder_id,
         verified: true,
       });
 
@@ -399,17 +412,21 @@ export async function POST(req: Request) {
         );
       }
 
+      // New User
       if (!user) {
         const finder_id = generateSecretCode();
         const token = generateSecretCode();
+
         const { data: newUser, error: insertError } = await supabase
           .from("simplified_users")
           .insert({
             phone_num: formattedPhone,
             finder_id: finder_id,
             token: token,
+            session_id: session_id,
+            session_expires_at: session_expires_at,
           })
-          .select("id, phone_num, created_at, finder_id")
+          .select("id, phone_num")
           .single();
 
         if (insertError) {
@@ -423,43 +440,52 @@ export async function POST(req: Request) {
         await setAllCookie({
           loggedin: true,
           id: newUser.id,
-          secure_validator: newUser.created_at,
+          session_id: session_id,
           phone_num: newUser.phone_num,
-          finder_id: newUser.finder_id,
           verified: true,
         });
 
         return NextResponse.json(
-          { success: true, message: "Account created and verified" },
+          {
+            success: true,
+            message: "Account created and verified",
+          },
           { status: 200 }
         );
       }
 
-      const { data: existingUser, error: fetchError } = await supabase
+      // Existing User
+      const { data: existingUser, error: updateError } = await supabase
         .from("simplified_users")
-        .select("id, phone_num, created_at, finder_id")
+        .update({
+          session_id: session_id,
+          session_expires_at: session_expires_at,
+        })
         .eq("id", user.id)
+        .select("phone_num")
         .single();
 
-      if (fetchError || !existingUser) {
-        console.error("User fetch error:", fetchError);
+      if (updateError || !existingUser) {
+        console.error("User session update error:", updateError);
         return NextResponse.json(
-          { error: "Failed to fetch user data" },
+          { error: "Failed to update session" },
           { status: 500 }
         );
       }
 
       await setAllCookie({
         loggedin: true,
-        id: existingUser.id,
-        secure_validator: existingUser.created_at,
+        id: user.id,
+        session_id,
         phone_num: existingUser.phone_num,
-        finder_id: existingUser.finder_id,
         verified: true,
       });
 
       return NextResponse.json(
-        { success: true, message: "Phone verified successfully" },
+        {
+          success: true,
+          message: "Phone verified successfully",
+        },
         { status: 200 }
       );
     }
