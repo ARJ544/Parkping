@@ -21,15 +21,27 @@ export async function POST(req: Request) {
 
   const verifiedPhone = `${data.user_country_code}${data.user_phone_number}`;
 
+  // Delete
+  await supabase
+    .from("temporary_phone")
+    .delete()
+    .eq("temp_phone", verifiedPhone);
+
+  // Create
   const { data: tempPhoneData, error: tempPhoneError } = await supabase
     .from("temporary_phone")
-    .upsert({ temp_phone: verifiedPhone }, { onConflict: "temp_phone" })
+    .insert({
+      temp_phone: verifiedPhone,
+    })
     .select("id, temp_phone")
     .single();
 
   if (tempPhoneError || !tempPhoneData) {
-    console.error("Temporary phone upsert failed:", tempPhoneError);
-    return NextResponse.json({ error: tempPhoneError?.message ?? "Failed" }, { status: 500 });
+    console.error("Temporary phone insert failed:", tempPhoneError);
+    return NextResponse.json(
+      { error: tempPhoneError?.message ?? "Failed" },
+      { status: 500 }
+    );
   }
 
   const temp_phone_id = tempPhoneData.id;

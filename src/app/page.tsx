@@ -16,7 +16,7 @@ export default async function Home() {
   }
 
   if (!auth.user.token && !auth.user.bsuid) {
-    const refreshedToken = await refreshUserToken(auth.user.id);
+    const refreshedToken = await refreshUserToken(auth.user.session_id);
     if (!refreshedToken.success) {
       return <HomeClient token={auth.user.token} loggedin={loggedin} bsuid={undefined} />;
     }

@@ -139,7 +139,7 @@ export const authenticateUser = cache(async (requireLogin: boolean = true,): Pro
  * Gets the caller phone number from temp_phone cookie or authenticated user
  */
 export async function getCaller(
-  userId?: string,
+  userSessionId?: string,
 ): Promise<{ success: false; response: NextResponse } | { success: true; caller: string }> {
   try {
     const cookieStore = await cookies();
@@ -167,10 +167,10 @@ export async function getCaller(
       }
     }
 
-    let userIdToUse = userId;
+    let userIdToUse = userSessionId;
     if (!userIdToUse) {
-      const { id } = await (await import("@/app/actions")).getAllCookie();
-      userIdToUse = id;
+      const { session_id } = await (await import("@/app/actions")).getAllCookie();
+      userIdToUse = session_id;
     }
 
     if (!userIdToUse) {
@@ -183,7 +183,7 @@ export async function getCaller(
     const { data: userData, error } = await supabase
       .from("simplified_users")
       .select("phone_num")
-      .eq("id", userIdToUse)
+      .eq("session_id", userIdToUse)
       .single();
 
     if (error || !userData) {
@@ -335,13 +335,13 @@ export function generateSecretCode() {
 /**
  * Generate New Token for user and update in database
  */
-export async function refreshUserToken(userId: string) {
+export async function refreshUserToken(userSessionId: string) {
   try {
     const newToken = generateSecretCode();
     const { error } = await supabase
       .from("simplified_users")
       .update({ token: newToken })
-      .eq("id", userId);
+      .eq("session_id", userSessionId);
 
     if (error) {
       console.error("Token refresh failed:", error);
