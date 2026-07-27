@@ -89,7 +89,13 @@ export async function POST() {
 
     const mixedNum = `${caller.slice(-5)}${callee.slice(-5)}`;
     const roomName = `conf_${mixedNum}_${Date.now()}`;
-
+    return NextResponse.json(
+      {
+        error:
+          "Calling feature is temporarily disabled. Please use the message option instead.",
+      },
+      { status: 403 },
+    );
     await supabase
       .from("calling_credits")
       .upsert({ phone_num: caller, is_calling: true }, { onConflict: "phone_num" });

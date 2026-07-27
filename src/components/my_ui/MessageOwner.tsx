@@ -199,7 +199,9 @@ export default function MessageOwner({
             </div>
 
             {/* Header */}
-            <div className={`flex items-center justify-between px-5 pb-4 border-b border-gray-200 dark:border-slate-700`}>
+            <div
+              className={`flex items-center justify-between px-5 pb-4 border-b border-gray-200 dark:border-slate-700`}
+            >
               <span className="text-base font-semibold tracking-tight text-gray-900 dark:text-slate-100">
                 Send a message
               </span>
@@ -227,20 +229,31 @@ export default function MessageOwner({
                         setCustom("");
                       }}
                       className={`flex items-center gap-3 rounded-full px-3.5 py-3 text-left text-[13.5px] leading-snug transition-all
-                    ${active
-                          ? "bg-brand-wa/10 border border-brand-wa"
-                          : "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 hover:border-coral/50 dark:hover:border-coral/40"
-                        }`}
+                    ${
+                      active
+                        ? "bg-brand-wa/10 border border-brand-wa"
+                        : "bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 hover:border-coral/50 dark:hover:border-coral/40"
+                    }`}
                     >
-                      <span className={`w-4 h-4 rounded-full border-[1.5px] shrink-0 flex items-center justify-center transition-all
-                    ${active
-                          ? "bg-brand-wa border-brand-wa"
-                          : "border-gray-300 dark:border-slate-500"
-                        }`}
+                      <span
+                        className={`w-4 h-4 rounded-full border-[1.5px] shrink-0 flex items-center justify-center transition-all
+                    ${
+                      active
+                        ? "bg-brand-wa border-brand-wa"
+                        : "border-gray-300 dark:border-slate-500"
+                    }`}
                       >
-                        {active && <span className="w-1.5 h-1.5 bg-white rounded-full" />}
+                        {active && (
+                          <span className="w-1.5 h-1.5 bg-white rounded-full" />
+                        )}
                       </span>
-                      <span className={active ? "text-gray-900 dark:text-slate-100 font-medium" : "text-gray-700 dark:text-slate-200"}>
+                      <span
+                        className={
+                          active
+                            ? "text-gray-900 dark:text-slate-100 font-medium"
+                            : "text-gray-700 dark:text-slate-200"
+                        }
+                      >
                         {m}
                       </span>
                     </button>
@@ -266,14 +279,18 @@ export default function MessageOwner({
               </div>
 
               {/* Feedback */}
-              {feedback && (feedback.msg !== "") && (
-                <div className={`flex items-start gap-2 rounded-full border px-3 mx-4 mt-3 py-2 text-sm
-              ${feedback.isError
-                    ? "border-red-200 bg-red-50 text-red-700 dark:border-red-700/60 dark:bg-red-900/30 dark:text-red-200"
-                    : "border-green-200 bg-green-50 text-green-700 dark:border-green-700/60 dark:bg-green-900/30 dark:text-green-200"
-                  }`}
+              {feedback && feedback.msg !== "" && (
+                <div
+                  className={`flex items-start gap-2 rounded-full border px-3 mx-4 mt-3 py-2 text-sm
+              ${
+                feedback.isError
+                  ? "border-red-200 bg-red-50 text-red-700 dark:border-red-700/60 dark:bg-red-900/30 dark:text-red-200"
+                  : "border-green-200 bg-green-50 text-green-700 dark:border-green-700/60 dark:bg-green-900/30 dark:text-green-200"
+              }`}
                 >
-                  <span className="mt-0.5 shrink-0">{feedback.isError ? "✕" : "✓"}</span>
+                  <span className="mt-0.5 shrink-0">
+                    {feedback.isError ? "✕" : "✓"}
+                  </span>
                   <span className="text-left">{feedback.msg}</span>
                 </div>
               )}
@@ -294,7 +311,7 @@ export default function MessageOwner({
                     </p>
                   </div>
 
-                  {hasPhoneNumber ? (
+                  {/* {hasPhoneNumber ? (
                     <button
                       disabled={!canCall || sending}
                       onClick={handleCall}
@@ -310,7 +327,20 @@ export default function MessageOwner({
                         finder_id={finderId}
                       />
                     </div>
-                  )}
+                  )} */}
+
+                  <button
+                    onClick={() => {
+                      setFeedback({
+                        msg: "Calling feature is temporarily disabled. Please use the message option instead.",
+                        isError: true,
+                      });
+                    }}
+                    className={callBtn}
+                  >
+                    <Phone size={15} />
+                    Call
+                  </button>
                 </div>
 
                 {hasPhoneNumber && (
@@ -345,10 +375,11 @@ export default function MessageOwner({
             className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
             onClick={() => setShowCredits(false)}
           />
-          <div className="relative w-full max-w-xs rounded-2xl shadow-xl p-5 flex flex-col gap-3
+          <div
+            className="relative w-full max-w-xs rounded-2xl shadow-xl p-5 flex flex-col gap-3
               border border-brand-border
-              bg-brand-card dark:bg-brand-navy">
-
+              bg-brand-card dark:bg-brand-navy"
+          >
             {/* Header */}
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold text-brand-heading dark:text-brand-heading">
@@ -384,7 +415,9 @@ export default function MessageOwner({
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-brand-muted">Resets</span>
-                <span className="text-slate-600 dark:text-brand-muted">{resetTime}</span>
+                <span className="text-slate-600 dark:text-brand-muted">
+                  {resetTime}
+                </span>
               </div>
             </div>
 
